@@ -1,0 +1,114 @@
+﻿@model ServicePortal.Models.User
+@{
+    ViewBag.Title = "NewUserB";
+    Layout = "~/Views/Shared/HeadofficeMasterPage.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add first User
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("BUSave", "Branch", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+
+                        </div>
+                    }
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">FullName</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.FullName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Name", required = "required" })
+                    </div>
+
+
+
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">UserName</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.UserName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "UserName", required = "required" })
+                    </div>
+                    <br>
+
+
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">Email</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Email", required = "required", type = "Email" })
+
+
+
+
+
+                    </div>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Password</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Password", required = "required", type = "password" })
+
+
+
+
+
+                            </div>
+
+
+                            <br>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Phone</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.UserCal1, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", required = "required" })
+
+
+
+
+
+                            </div>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Pictuer</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.PictuerPath, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", type = "file" })
+                            </div>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                }
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+

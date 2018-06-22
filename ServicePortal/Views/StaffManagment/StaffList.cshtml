@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ServicePortal.Models.User>
+@{
+    ViewBag.Title = "StaffList";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+
+<div class="col-md-4 col-md-offset-4">
+
+    @Html.ActionLink("Add New ", "AddNewStaff", "StaffManagment", new { @class = "btn btn-outline btn-primary btn-lg btn-block" })
+</div><br><br><br>
+
+@if (TempData["deactive"] != null)
+                    {
+<div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+    <div class="alert alert-danger">
+        @TempData["deactive"]
+    </div>
+
+</div>
+                    }
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+       Staff List
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Pictuer</th>
+                        <th>FullName</th>
+                        <th>Phone</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src=@itm.PictuerPath style="width:80px; height:80px;" alt="auto" />
+                            </td>
+                            <td>@itm.FullName</td>
+                            <td>@itm.UserCal1</td>
+                            <td>@itm.Department.Description</td>
+                            <td>@itm.Designation.Description</td>
+                            <td>@itm.Status</td>
+
+                            <td>
+                                <a href="@Url.Action("Delete","StaffManagment",new {id=itm.id })" class="btn btn-danger btn-circle" title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </a>
+
+                                <a href="@Url.Action("AddNewStaff","StaffManagment",new {id=itm.id })" class="btn btn-default ">
+                                    DeActivate
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

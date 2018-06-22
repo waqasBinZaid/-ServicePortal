@@ -1,0 +1,31 @@
+<div class="mkdf-language-dropdown">
+ <div class="mkdf-ld-current-lang-holder">
+  <a class="mkdf-ld-current-lang" href="javascript: void(0)">
+   en
+   <img src="http://deploy.mikado-themes.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/en.png" alt="English" width="18" height="12">
+  </a>
+ </div>
+ <ul class="mkdf-ld-lang-list">
+  <li class="mkdf-ld-item">
+   <a href="#">
+         <span class="mkdf-ld-item-image">
+          <img src="http://deploy.mikado-themes.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/it.png" alt="it" width="18" height="12">
+         </span>
+    Italian </a>
+  </li>
+  <li class="mkdf-ld-item">
+   <a href="#">
+         <span class="mkdf-ld-item-image">
+          <img src="http://deploy.mikado-themes.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/de.png" alt="de" width="18" height="12">
+         </span>
+    German </a>
+  </li>
+  <li class="mkdf-ld-item">
+   <a href="#">
+         <span class="mkdf-ld-item-image">
+          <img src="http://deploy.mikado-themes.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/fr.png" alt="fr" width="18" height="12">
+         </span>
+    French </a>
+  </li>
+ </ul>
+</div>

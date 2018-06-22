@@ -1,0 +1,141 @@
+﻿@model ServicePortal.Models.ReturnItem
+@{
+    ViewBag.Title = "ReturnItems";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+
+<div class="table-responsive">
+
+    <div class="form-inline">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Session["salename"]
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+
+                    <div class="form-inline">
+                        <form method="post" id="retForm" enctype="multipart/form-data">
+
+                            @*@using (Html.BeginForm("IssueItemSave", "BranchInventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {*@
+                            @Html.HiddenFor(m => m.Id);
+
+                            @if (TempData["qunaty"] != null)
+                            {
+                                <div class="alert alert-warning alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                                    <div class="alert alert-danger">
+                                        @TempData["qunaty"]
+                                    </div>
+
+                                </div>
+                            }
+
+
+
+                            <div class="row col-lg-12">
+                                <div class="col-lg-6">
+
+                                    <div class="form-group has-success">
+
+                                        <label class="control-label" for="inputSuccess">Return Quantity</label>
+                                        <br>
+                                        @Html.TextBoxFor(m => m.QuantityReturn, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Quantity", required = "required", type = "number" })
+                                    </div>
+                                    <br>
+                                    <div class="form-group has-success">
+
+                                        <label class="control-label" for="inputSuccess">Price Recharge Return</label>
+                                        <br>
+                                        <input type="text" name="PriceChargeReturn" class="form-control" placeholder="Price" readonly="readonly" required="required" value="@Session["saleprice"]">
+
+
+                                        @*@Html.TextBoxFor(m => m.IssuePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Price", required = "required" })*@
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group has-success">
+
+                                        <label class="control-label" for="inputSuccess">Select Customer</label>
+                                        <br>
+                                        @Html.DropDownListFor(m => m.CustomerID, ViewBag.custname as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group has-success">
+
+                                        <label class="control-label" for="inputSuccess">Returned Branch</label>
+                                        <br>
+                                        @Html.DropDownListFor(m => m.ReturnedBranchID, ViewBag.brnchissu as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess" })
+                                    </div>
+                                    <br>
+                                    <div class="form-group has-success">
+                                        <label>Upload Any Document</label><br>
+                                        @Html.TextBoxFor(m => m.ReturnDocument, new { @class = "form-control", id = "issdocument", type = "file" })
+                                        @*<input type="file" class="form-control" name="IssueDocument">*@
+                                    </div>
+                                    <br>
+                                    <div class="form-group has-success">
+
+                                        <label class="control-label" for="inputSuccess">Returned Description</label>
+                                        <br>
+                                        @Html.TextAreaFor(m => m.ReturnRemarks, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", @row = "10" })
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-group has-success" style="width:300px">
+
+                                    <button type="submit" id="retbtn" class="btn btn-primary">Save</button>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/assets/plugins/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#retbtn").click(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/BranchInventory/ReturnItemSave',
+                data: $('#retForm').serialize(),
+
+                success: function (response) {
+                    if (response == "returnitem") {
+                        alert("Item Return and updated in stock");
+                        location.href = "/BranchInventory/ReturnItems"
+
+                    }
+                    else if (response == "rtrn") {
+                        alert("Item Return and added in stock");
+                        location.href = "/BranchInventory/ReturnItems"
+
+                    }
+                    else {
+                        alert("Item Not sale to this branch or customer");
+                    }
+                    
+                }
+
+            });
+            return false
+        });
+    });
+        </script>

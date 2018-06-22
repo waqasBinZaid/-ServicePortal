@@ -1,0 +1,78 @@
+﻿@model  ServicePortal.Models.Branch
+@{
+    ViewBag.Title = "AddNewBranch";
+    Layout = "~/Views/Shared/HeadofficeMasterPage.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add New Branch
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("BSave", "Branch", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+
+                        </div>
+                    }
+                    <div class="row col-lg-12">
+                    <div class="form-group has-success" >
+
+                        <label class="control-label" for="inputSuccess">BranchName</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.BranchName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Name", required = "required" })
+                    </div>
+                    
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Phone</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Phone, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone No", required = "required" })
+                    </div>
+                    
+                    <div class="form-group has-success" >
+
+                        <label class="control-label" for="inputSuccess">Descriptions</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Descriptiin, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Descriptions", required = "required",})
+
+
+
+
+
+                    </div>
+                            <br><br>
+                            <div class="form-group has-success" >
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+
+
+
+                            </div>
+
+                        </div>
+
+                }
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+

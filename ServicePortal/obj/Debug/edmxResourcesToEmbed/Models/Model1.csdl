@@ -1,0 +1,1731 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServicesPortalApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Accesory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CatID" Type="Int32" Nullable="false" />
+    <Property Name="SubCatID" Type="Int32" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Accesories_Category" FromRole="Accesories" ToRole="Category" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_Accesories_inventryItem" FromRole="Accesories" ToRole="inventryItem" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Accesories_Models" FromRole="Accesories" ToRole="Models" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK_Accesories_SubCategory" FromRole="Accesories" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="Descriptiin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Branches_Companies" FromRole="Branches" ToRole="Companies" />
+    <NavigationProperty Name="BranchStocks" Relationship="Self.FK_BranchStocks_Branches" FromRole="Branches" ToRole="BranchStocks" />
+    <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Branches" FromRole="Branches" ToRole="Issue" />
+    <NavigationProperty Name="Issues1" Relationship="Self.FK_Issue_Branches1" FromRole="Branches" ToRole="Issue" />
+    <NavigationProperty Name="Issues2" Relationship="Self.FK_Issue_Branches2" FromRole="Branches" ToRole="Issue" />
+    <NavigationProperty Name="Organizations" Relationship="Self.FK_Organizations_Branches" FromRole="Branches" ToRole="Organizations" />
+    <NavigationProperty Name="PackageBranchStocks" Relationship="Self.FK_PackageBranchStock_Branches" FromRole="Branches" ToRole="PackageBranchStock" />
+    <NavigationProperty Name="PackageIssues" Relationship="Self.FK_PackageIssue_Branches" FromRole="Branches" ToRole="PackageIssue" />
+    <NavigationProperty Name="PackageIssues1" Relationship="Self.FK_PackageIssue_Branches1" FromRole="Branches" ToRole="PackageIssue" />
+    <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipt_Branches" FromRole="Branches" ToRole="Receipt" />
+    <NavigationProperty Name="ReturnItems" Relationship="Self.FK_ReturnItem_Branches" FromRole="Branches" ToRole="ReturnItem" />
+    <NavigationProperty Name="ReturnItems1" Relationship="Self.FK_ReturnItem_Branches1" FromRole="Branches" ToRole="ReturnItem" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Branches" FromRole="Branches" ToRole="Users" />
+    <NavigationProperty Name="WeighBridgeItemValues" Relationship="Self.FK_WeighBridgeItemValues_Branches" FromRole="Branches" ToRole="WeighBridgeItemValues" />
+  </EntityType>
+  <EntityType Name="BranchStock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemID" Type="Int32" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_BranchStocks_Branches" FromRole="BranchStocks" ToRole="Branches" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_BranchStocks_inventryItem" FromRole="BranchStocks" ToRole="inventryItem" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Brand1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Createdon" Type="DateTime" Precision="0" />
+    <Property Name="ModiBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModiOn" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Brands_Companies" FromRole="Brands" ToRole="Companies" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Catgory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="ModiBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModiOn" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Accesories" Relationship="Self.FK_Accesories_Category" FromRole="Category" ToRole="Accesories" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Catgory_Companies" FromRole="Category" ToRole="Companies" />
+    <NavigationProperty Name="ItemsCatSubCats" Relationship="Self.FK_ItemsCatSubCat_Category" FromRole="Category" ToRole="ItemsCatSubCat" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Models_Category" FromRole="Category" ToRole="Models" />
+    <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContectPerson" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Call1" Type="Int32" />
+    <Property Name="CAll2" Type="Int32" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Modifieddate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branches" Relationship="Self.FK_Branches_Companies" FromRole="Companies" ToRole="Branches" />
+    <NavigationProperty Name="Brands" Relationship="Self.FK_Brands_Companies" FromRole="Companies" ToRole="Brands" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Catgory_Companies" FromRole="Companies" ToRole="Category" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Country_Companies" FromRole="Companies" ToRole="Country" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Companies" FromRole="Companies" ToRole="Departments" />
+    <NavigationProperty Name="Designations" Relationship="Self.FK_Designation_Companies" FromRole="Companies" ToRole="Designation" />
+    <NavigationProperty Name="GradeDAs" Relationship="Self.FK_GradeDA_Companies" FromRole="Companies" ToRole="GradeDA" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_Grades_Companies" FromRole="Companies" ToRole="Grades" />
+    <NavigationProperty Name="GradeTAs" Relationship="Self.FK_GradeTA_Companies" FromRole="Companies" ToRole="GradeTA" />
+    <NavigationProperty Name="inventryItems" Relationship="Self.FK_inventryItem_Companies" FromRole="Companies" ToRole="inventryItem" />
+    <NavigationProperty Name="Manufactueres" Relationship="Self.FK_Manufactuere_Companies" FromRole="Companies" ToRole="Manufactuere" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Models_Companies" FromRole="Companies" ToRole="Models" />
+    <NavigationProperty Name="Organizations" Relationship="Self.FK_Organizations_Companies" FromRole="Companies" ToRole="Organizations" />
+    <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Companies" FromRole="Companies" ToRole="SubCategory" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Companies" FromRole="Companies" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Country1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Country_Companies" FromRole="Country" ToRole="Companies" />
+  </EntityType>
+  <EntityType Name="Cutomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Cutomers" FromRole="Cutomers" ToRole="Issue" />
+    <NavigationProperty Name="PackageIssues" Relationship="Self.FK_PackageIssue_Cutomers" FromRole="Cutomers" ToRole="PackageIssue" />
+    <NavigationProperty Name="ReturnItems" Relationship="Self.FK_ReturnItem_Cutomers" FromRole="Cutomers" ToRole="ReturnItem" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Departments_Companies" FromRole="Departments" ToRole="Companies" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Departments" FromRole="Departments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreadtedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreadtedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Designation_Companies" FromRole="Designation" ToRole="Companies" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Designation" FromRole="Designation" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="GradeDA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="GratdeID" Type="Int32" />
+    <Property Name="DAType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DARate" Type="Double" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_GradeDA_Companies" FromRole="GradeDA" ToRole="Companies" />
+    <NavigationProperty Name="Grade" Relationship="Self.FK_GradeDA_Grades" FromRole="GradeDA" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="Discription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Grades_Companies" FromRole="Grades" ToRole="Companies" />
+    <NavigationProperty Name="GradeDAs" Relationship="Self.FK_GradeDA_Grades" FromRole="Grades" ToRole="GradeDA" />
+    <NavigationProperty Name="GradeTAs" Relationship="Self.FK_GradeTA_Grades" FromRole="Grades" ToRole="GradeTA" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Grades" FromRole="Grades" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="GradeTA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="GradeID" Type="Int32" />
+    <Property Name="TAType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TARate" Type="Double" />
+    <Property Name="CreatedDtae" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_GradeTA_Companies" FromRole="GradeTA" ToRole="Companies" />
+    <NavigationProperty Name="Grade" Relationship="Self.FK_GradeTA_Grades" FromRole="GradeTA" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="inventryItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CatID" Type="Int32" />
+    <Property Name="PurchaseDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SalesDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModelID" Type="Int32" />
+    <Property Name="TotalQuantity" Type="Int32" />
+    <Property Name="AvgPurchasePrice" Type="Double" />
+    <Property Name="LastPurchasePrice" Type="Double" />
+    <Property Name="BottemPrice" Type="Double" />
+    <Property Name="InternalPrice" Type="Double" />
+    <Property Name="TradesPrice" Type="Double" />
+    <Property Name="QoutedPrice" Type="Double" />
+    <Property Name="AvgSalePrice" Type="Double" />
+    <Property Name="LastSalePrice" Type="Double" />
+    <Property Name="LastRecived" Type="DateTime" Precision="3" />
+    <Property Name="LastIssue" Type="DateTime" Precision="3" />
+    <Property Name="LastReturn" Type="DateTime" Precision="3" />
+    <Property Name="LastTransfer" Type="DateTime" Precision="3" />
+    <Property Name="LastInTransit" Type="DateTime" Precision="3" />
+    <Property Name="LastScrap" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifedOn" Type="DateTime" Precision="0" />
+    <Property Name="SerialNo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ManFaceID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accesories" Relationship="Self.FK_Accesories_inventryItem" FromRole="inventryItem" ToRole="Accesories" />
+    <NavigationProperty Name="BranchStocks" Relationship="Self.FK_BranchStocks_inventryItem" FromRole="inventryItem" ToRole="BranchStocks" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_inventryItem_Companies" FromRole="inventryItem" ToRole="Companies" />
+    <NavigationProperty Name="Manufactuere" Relationship="Self.FK_inventryItem_Manufactuere" FromRole="inventryItem" ToRole="Manufactuere" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_inventryItem_Models" FromRole="inventryItem" ToRole="Models" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK_inventryItem_SubCategory" FromRole="inventryItem" ToRole="SubCategory" />
+    <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_inventryItem" FromRole="inventryItem" ToRole="Issue" />
+    <NavigationProperty Name="ItemAttributes" Relationship="Self.FK_ItemAttribute_inventryItem" FromRole="inventryItem" ToRole="ItemAttribute" />
+    <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipt_inventryItem" FromRole="inventryItem" ToRole="Receipt" />
+    <NavigationProperty Name="ReturnItems" Relationship="Self.FK_ReturnItem_inventryItem" FromRole="inventryItem" ToRole="ReturnItem" />
+    <NavigationProperty Name="WeighBridgeItemValues" Relationship="Self.FK_WeighBridgeItemValues_inventryItem1" FromRole="inventryItem" ToRole="WeighBridgeItemValues" />
+  </EntityType>
+  <EntityType Name="Issue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="IssuedQuantity" Type="Double" Nullable="false" />
+    <Property Name="IssuePrice" Type="Double" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="IssuedBranchID" Type="Int32" />
+    <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IssuedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IssueDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssueRemarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Issue_Branches" FromRole="Issue" ToRole="Branches" />
+    <NavigationProperty Name="Branch1" Relationship="Self.FK_Issue_Branches1" FromRole="Issue" ToRole="Branches" />
+    <NavigationProperty Name="Branch2" Relationship="Self.FK_Issue_Branches2" FromRole="Issue" ToRole="Branches" />
+    <NavigationProperty Name="Cutomer" Relationship="Self.FK_Issue_Cutomers" FromRole="Issue" ToRole="Cutomers" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_Issue_inventryItem" FromRole="Issue" ToRole="inventryItem" />
+  </EntityType>
+  <EntityType Name="ItemAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="CatID" Type="Int32" Nullable="false" />
+    <Property Name="SubCatID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" />
+    <Property Name="AttTypeID" Type="Int32" />
+    <Property Name="AttributeValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_ItemAttribute_inventryItem" FromRole="ItemAttribute" ToRole="inventryItem" />
+    <NavigationProperty Name="ItemAttributeType" Relationship="Self.FK_ItemAttribute_ItemAttributeType" FromRole="ItemAttribute" ToRole="ItemAttributeType" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_ItemAttribute_Models" FromRole="ItemAttribute" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="ItemAttributeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemAttribute" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ActiveAttribute" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ItemAttributes" Relationship="Self.FK_ItemAttribute_ItemAttributeType" FromRole="ItemAttributeType" ToRole="ItemAttribute" />
+    <NavigationProperty Name="ItemsCatSubCats" Relationship="Self.FK_ItemsCatSubCat_ItemAttributeType" FromRole="ItemAttributeType" ToRole="ItemsCatSubCat" />
+  </EntityType>
+  <EntityType Name="ItemsCatSubCat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CatID" Type="Int32" Nullable="false" />
+    <Property Name="SubCatID" Type="Int32" Nullable="false" />
+    <Property Name="AttTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_ItemsCatSubCat_Category" FromRole="ItemsCatSubCat" ToRole="Category" />
+    <NavigationProperty Name="ItemAttributeType" Relationship="Self.FK_ItemsCatSubCat_ItemAttributeType" FromRole="ItemsCatSubCat" ToRole="ItemAttributeType" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK_ItemsCatSubCat_SubCategory" FromRole="ItemsCatSubCat" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="Manufactuere">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="Manufactuere1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Manufactuere_Companies" FromRole="Manufactuere" ToRole="Companies" />
+    <NavigationProperty Name="inventryItems" Relationship="Self.FK_inventryItem_Manufactuere" FromRole="Manufactuere" ToRole="inventryItem" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Models_Manufactuere" FromRole="Manufactuere" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="Models" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="M_CatId" Type="Int32" />
+    <Property Name="M_SubCatId" Type="Int32" />
+    <Property Name="M_ManFacID" Type="Int32" />
+    <NavigationProperty Name="Accesories" Relationship="Self.FK_Accesories_Models" FromRole="Models" ToRole="Accesories" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Models_Category" FromRole="Models" ToRole="Category" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Models_Companies" FromRole="Models" ToRole="Companies" />
+    <NavigationProperty Name="inventryItems" Relationship="Self.FK_inventryItem_Models" FromRole="Models" ToRole="inventryItem" />
+    <NavigationProperty Name="ItemAttributes" Relationship="Self.FK_ItemAttribute_Models" FromRole="Models" ToRole="ItemAttribute" />
+    <NavigationProperty Name="Manufactuere" Relationship="Self.FK_Models_Manufactuere" FromRole="Models" ToRole="Manufactuere" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK_Models_SubCategory" FromRole="Models" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="OrganizationDoc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrganizationID" Type="Int32" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_OrganizationDoc_Organizations" FromRole="OrganizationDoc" ToRole="Organizations" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizaationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Call" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lendline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Organizations_Branches" FromRole="Organizations" ToRole="Branches" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Organizations_Companies" FromRole="Organizations" ToRole="Companies" />
+    <NavigationProperty Name="OrganizationDocs" Relationship="Self.FK_OrganizationDoc_Organizations" FromRole="Organizations" ToRole="OrganizationDoc" />
+  </EntityType>
+  <EntityType Name="PackageBranchStock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WeighBridgeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_PackageBranchStock_Branches" FromRole="PackageBranchStock" ToRole="Branches" />
+    <NavigationProperty Name="WeighBridge" Relationship="Self.FK_PackageBranchStock_WeighBridge" FromRole="PackageBranchStock" ToRole="WeighBridge" />
+  </EntityType>
+  <EntityType Name="PackageIssue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="WeighBridgeID" Type="Int32" Nullable="false" />
+    <Property Name="IssuedQuantity" Type="Double" Nullable="false" />
+    <Property Name="IssuePrice" Type="Double" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="IssuedBranchID" Type="Int32" Nullable="false" />
+    <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IssuedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IssuedDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IssuedRemarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_PackageIssue_Branches" FromRole="PackageIssue" ToRole="Branches" />
+    <NavigationProperty Name="Branch1" Relationship="Self.FK_PackageIssue_Branches1" FromRole="PackageIssue" ToRole="Branches" />
+    <NavigationProperty Name="Cutomer" Relationship="Self.FK_PackageIssue_Cutomers" FromRole="PackageIssue" ToRole="Cutomers" />
+    <NavigationProperty Name="WeighBridge" Relationship="Self.FK_PackageIssue_WeighBridge" FromRole="PackageIssue" ToRole="WeighBridge" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="ReceiptQuantity" Type="Double" Nullable="false" />
+    <Property Name="ReceiptPrice" Type="Double" Nullable="false" />
+    <Property Name="SuplierID" Type="Int32" Nullable="false" />
+    <Property Name="ReceivedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReceivedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReceiptDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiptRemarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Receipt_Branches" FromRole="Receipt" ToRole="Branches" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_Receipt_inventryItem" FromRole="Receipt" ToRole="inventryItem" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Receipt_Supplier" FromRole="Receipt" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="ReturnItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="QuantityReturn" Type="Double" Nullable="false" />
+    <Property Name="PriceChargeReturn" Type="Double" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="ReturnedBranchID" Type="Int32" />
+    <Property Name="ReturnBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReturnedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReturnDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnRemarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_ReturnItem_Branches" FromRole="ReturnItem" ToRole="Branches" />
+    <NavigationProperty Name="Branch1" Relationship="Self.FK_ReturnItem_Branches1" FromRole="ReturnItem" ToRole="Branches" />
+    <NavigationProperty Name="Cutomer" Relationship="Self.FK_ReturnItem_Cutomers" FromRole="ReturnItem" ToRole="Cutomers" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_ReturnItem_inventryItem" FromRole="ReturnItem" ToRole="inventryItem" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CatId" Type="Int32" Nullable="false" />
+    <Property Name="SubCat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Accesories" Relationship="Self.FK_Accesories_SubCategory" FromRole="SubCategory" ToRole="Accesories" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_SubCategory_Companies" FromRole="SubCategory" ToRole="Companies" />
+    <NavigationProperty Name="inventryItems" Relationship="Self.FK_inventryItem_SubCategory" FromRole="SubCategory" ToRole="inventryItem" />
+    <NavigationProperty Name="ItemsCatSubCats" Relationship="Self.FK_ItemsCatSubCat_SubCategory" FromRole="SubCategory" ToRole="ItemsCatSubCat" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Models_SubCategory" FromRole="SubCategory" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipt_Supplier" FromRole="Supplier" ToRole="Receipt" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TempAccesory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CatID" Type="Int32" Nullable="false" />
+    <Property Name="SubCatID" Type="Int32" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TempItermAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="CatID" Type="Int32" Nullable="false" />
+    <Property Name="SubCatID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" />
+    <Property Name="AttTypeID" Type="Int32" />
+    <Property Name="AttributeValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserCal1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserCal2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PerAddress1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PerAddress2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PerCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PerCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DesigantionId" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+    <Property Name="GradeId" Type="Int32" />
+    <Property Name="ReportingMgr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PictuerPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="JoininDate" Type="DateTime" Precision="3" />
+    <Property Name="LeavingDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatDate" Type="DateTime" Precision="3" />
+    <Property Name="CraatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Users_Branches" FromRole="Users" ToRole="Branches" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Users_Companies" FromRole="Users" ToRole="Companies" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Users_Departments" FromRole="Users" ToRole="Departments" />
+    <NavigationProperty Name="Designation" Relationship="Self.FK_Users_Designation" FromRole="Users" ToRole="Designation" />
+    <NavigationProperty Name="Grade" Relationship="Self.FK_Users_Grades" FromRole="Users" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="WeighBridge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PackageBranchStocks" Relationship="Self.FK_PackageBranchStock_WeighBridge" FromRole="WeighBridge" ToRole="PackageBranchStock" />
+    <NavigationProperty Name="PackageIssues" Relationship="Self.FK_PackageIssue_WeighBridge" FromRole="WeighBridge" ToRole="PackageIssue" />
+    <NavigationProperty Name="WeighBridgeItemValues" Relationship="Self.FK_WeighBridgeItemValues_WeighBridge1" FromRole="WeighBridge" ToRole="WeighBridgeItemValues" />
+  </EntityType>
+  <EntityType Name="WeighBridgeItemValue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="WeighBridgeID" Type="Int32" Nullable="false" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="PackagePurchasePrice" Type="Double" />
+    <Property Name="PackageSalePrice" Type="Double" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_WeighBridgeItemValues_Branches" FromRole="WeighBridgeItemValues" ToRole="Branches" />
+    <NavigationProperty Name="inventryItem" Relationship="Self.FK_WeighBridgeItemValues_inventryItem1" FromRole="WeighBridgeItemValues" ToRole="inventryItem" />
+    <NavigationProperty Name="WeighBridge" Relationship="Self.FK_WeighBridgeItemValues_WeighBridge1" FromRole="WeighBridgeItemValues" ToRole="WeighBridge" />
+  </EntityType>
+  <Association Name="FK_Accesories_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Accesories" Type="Self.Accesory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accesories">
+        <PropertyRef Name="CatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accesories_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
+    <End Role="Accesories" Type="Self.Accesory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Accesories">
+        <PropertyRef Name="AccessoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accesories_Models">
+    <End Role="Models" Type="Self.Model" Multiplicity="1" />
+    <End Role="Accesories" Type="Self.Accesory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Accesories">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accesories_SubCategory">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1" />
+    <End Role="Accesories" Type="Self.Accesory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Accesories">
+        <PropertyRef Name="SubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branches_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Branches" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Branches">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchStocks_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="BranchStocks" Type="Self.BranchStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchStocks">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Branches1">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="IssuedBranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Branches2">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="IssuedBranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizations_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Organizations">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageBranchStock_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="PackageBranchStock" Type="Self.PackageBranchStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PackageBranchStock">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageIssue_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="PackageIssue" Type="Self.PackageIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PackageIssue">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageIssue_Branches1">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="PackageIssue" Type="Self.PackageIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PackageIssue">
+        <PropertyRef Name="IssuedBranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnItem_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="ReturnItem" Type="Self.ReturnItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReturnItem">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnItem_Branches1">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="ReturnItem" Type="Self.ReturnItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReturnItem">
+        <PropertyRef Name="ReturnedBranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WeighBridgeItemValues_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="WeighBridgeItemValues" Type="Self.WeighBridgeItemValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WeighBridgeItemValues">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchStocks_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="0..1" />
+    <End Role="BranchStocks" Type="Self.BranchStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchStocks">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Brands_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Brands" Type="Self.Brand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Brands">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catgory_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemsCatSubCat_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="ItemsCatSubCat" Type="Self.ItemsCatSubCat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemsCatSubCat">
+        <PropertyRef Name="CatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="M_CatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departments_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Designation_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Designation" Type="Self.Designation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Designation">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeDA_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="GradeDA" Type="Self.GradeDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GradeDA">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grades_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Grades" Type="Self.Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeTA_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="GradeTA" Type="Self.GradeTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GradeTA">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventryItem_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inventryItem">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manufactuere_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Manufactuere" Type="Self.Manufactuere" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Manufactuere">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Models" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizations_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Organizations">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Companies">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_Cutomers">
+    <End Role="Cutomers" Type="Self.Cutomer" Multiplicity="1" />
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cutomers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageIssue_Cutomers">
+    <End Role="Cutomers" Type="Self.Cutomer" Multiplicity="1" />
+    <End Role="PackageIssue" Type="Self.PackageIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cutomers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PackageIssue">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnItem_Cutomers">
+    <End Role="Cutomers" Type="Self.Cutomer" Multiplicity="0..1" />
+    <End Role="ReturnItem" Type="Self.ReturnItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cutomers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReturnItem">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Departments">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="DesigantionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeDA_Grades">
+    <End Role="Grades" Type="Self.Grade" Multiplicity="0..1" />
+    <End Role="GradeDA" Type="Self.GradeDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GradeDA">
+        <PropertyRef Name="GratdeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GradeTA_Grades">
+    <End Role="Grades" Type="Self.Grade" Multiplicity="0..1" />
+    <End Role="GradeTA" Type="Self.GradeTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GradeTA">
+        <PropertyRef Name="GradeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Grades">
+    <End Role="Grades" Type="Self.Grade" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="GradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventryItem_Manufactuere">
+    <End Role="Manufactuere" Type="Self.Manufactuere" Multiplicity="0..1" />
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufactuere">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inventryItem">
+        <PropertyRef Name="ManFaceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventryItem_Models">
+    <End Role="Models" Type="Self.Model" Multiplicity="0..1" />
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inventryItem">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inventryItem_SubCategory">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inventryItem">
+        <PropertyRef Name="CatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Issue_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
+    <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemAttribute_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="0..1" />
+    <End Role="ItemAttribute" Type="Self.ItemAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ItemAttribute">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnItem_inventryItem">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
+    <End Role="ReturnItem" Type="Self.ReturnItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReturnItem">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WeighBridgeItemValues_inventryItem1">
+    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
+    <End Role="WeighBridgeItemValues" Type="Self.WeighBridgeItemValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inventryItem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WeighBridgeItemValues">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemAttribute_ItemAttributeType">
+    <End Role="ItemAttributeType" Type="Self.ItemAttributeType" Multiplicity="0..1" />
+    <End Role="ItemAttribute" Type="Self.ItemAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemAttributeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemAttribute">
+        <PropertyRef Name="AttTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemAttribute_Models">
+    <End Role="Models" Type="Self.Model" Multiplicity="1" />
+    <End Role="ItemAttribute" Type="Self.ItemAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ItemAttribute">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemsCatSubCat_ItemAttributeType">
+    <End Role="ItemAttributeType" Type="Self.ItemAttributeType" Multiplicity="1" />
+    <End Role="ItemsCatSubCat" Type="Self.ItemsCatSubCat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemAttributeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemsCatSubCat">
+        <PropertyRef Name="AttTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemsCatSubCat_SubCategory">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1" />
+    <End Role="ItemsCatSubCat" Type="Self.ItemsCatSubCat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ItemsCatSubCat">
+        <PropertyRef Name="SubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models_Manufactuere">
+    <End Role="Manufactuere" Type="Self.Manufactuere" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufactuere">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="M_ManFacID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models_SubCategory">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="M_SubCatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationDoc_Organizations">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="OrganizationDoc" Type="Self.OrganizationDoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrganizationDoc">
+        <PropertyRef Name="OrganizationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageBranchStock_WeighBridge">
+    <End Role="WeighBridge" Type="Self.WeighBridge" Multiplicity="1" />
+    <End Role="PackageBranchStock" Type="Self.PackageBranchStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WeighBridge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PackageBranchStock">
+        <PropertyRef Name="WeighBridgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageIssue_WeighBridge">
+    <End Role="WeighBridge" Type="Self.WeighBridge" Multiplicity="1" />
+    <End Role="PackageIssue" Type="Self.PackageIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WeighBridge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PackageIssue">
+        <PropertyRef Name="WeighBridgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="SuplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WeighBridgeItemValues_WeighBridge1">
+    <End Role="WeighBridge" Type="Self.WeighBridge" Multiplicity="1" />
+    <End Role="WeighBridgeItemValues" Type="Self.WeighBridgeItemValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WeighBridge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WeighBridgeItemValues">
+        <PropertyRef Name="WeighBridgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServicesPortalApiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accesories" EntityType="Self.Accesory" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="BranchStocks" EntityType="Self.BranchStock" />
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Cutomers" EntityType="Self.Cutomer" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Designations" EntityType="Self.Designation" />
+    <EntitySet Name="GradeDAs" EntityType="Self.GradeDA" />
+    <EntitySet Name="Grades" EntityType="Self.Grade" />
+    <EntitySet Name="GradeTAs" EntityType="Self.GradeTA" />
+    <EntitySet Name="inventryItems" EntityType="Self.inventryItem" />
+    <EntitySet Name="Issues" EntityType="Self.Issue" />
+    <EntitySet Name="ItemAttributes" EntityType="Self.ItemAttribute" />
+    <EntitySet Name="ItemAttributeTypes" EntityType="Self.ItemAttributeType" />
+    <EntitySet Name="ItemsCatSubCats" EntityType="Self.ItemsCatSubCat" />
+    <EntitySet Name="Manufactueres" EntityType="Self.Manufactuere" />
+    <EntitySet Name="Models" EntityType="Self.Model" />
+    <EntitySet Name="OrganizationDocs" EntityType="Self.OrganizationDoc" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="PackageBranchStocks" EntityType="Self.PackageBranchStock" />
+    <EntitySet Name="PackageIssues" EntityType="Self.PackageIssue" />
+    <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+    <EntitySet Name="ReturnItems" EntityType="Self.ReturnItem" />
+    <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TempAccesories" EntityType="Self.TempAccesory" />
+    <EntitySet Name="TempItermAttributes" EntityType="Self.TempItermAttribute" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="WeighBridges" EntityType="Self.WeighBridge" />
+    <EntitySet Name="WeighBridgeItemValues" EntityType="Self.WeighBridgeItemValue" />
+    <AssociationSet Name="FK_Accesories_Category" Association="Self.FK_Accesories_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Accesories" EntitySet="Accesories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accesories_inventryItem" Association="Self.FK_Accesories_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="Accesories" EntitySet="Accesories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accesories_Models" Association="Self.FK_Accesories_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Accesories" EntitySet="Accesories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accesories_SubCategory" Association="Self.FK_Accesories_SubCategory">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="Accesories" EntitySet="Accesories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branches_Companies" Association="Self.FK_Branches_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Branches" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchStocks_Branches" Association="Self.FK_BranchStocks_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="BranchStocks" EntitySet="BranchStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Branches" Association="Self.FK_Issue_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Branches1" Association="Self.FK_Issue_Branches1">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Branches2" Association="Self.FK_Issue_Branches2">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizations_Branches" Association="Self.FK_Organizations_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Organizations" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageBranchStock_Branches" Association="Self.FK_PackageBranchStock_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="PackageBranchStock" EntitySet="PackageBranchStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageIssue_Branches" Association="Self.FK_PackageIssue_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="PackageIssue" EntitySet="PackageIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageIssue_Branches1" Association="Self.FK_PackageIssue_Branches1">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="PackageIssue" EntitySet="PackageIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_Branches" Association="Self.FK_Receipt_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnItem_Branches" Association="Self.FK_ReturnItem_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="ReturnItem" EntitySet="ReturnItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnItem_Branches1" Association="Self.FK_ReturnItem_Branches1">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="ReturnItem" EntitySet="ReturnItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Branches" Association="Self.FK_Users_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WeighBridgeItemValues_Branches" Association="Self.FK_WeighBridgeItemValues_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="WeighBridgeItemValues" EntitySet="WeighBridgeItemValues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchStocks_inventryItem" Association="Self.FK_BranchStocks_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="BranchStocks" EntitySet="BranchStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Brands_Companies" Association="Self.FK_Brands_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Brands" EntitySet="Brands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catgory_Companies" Association="Self.FK_Catgory_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemsCatSubCat_Category" Association="Self.FK_ItemsCatSubCat_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="ItemsCatSubCat" EntitySet="ItemsCatSubCats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models_Category" Association="Self.FK_Models_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SubCategory" EntitySet="SubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Country_Companies" Association="Self.FK_Country_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departments_Companies" Association="Self.FK_Departments_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Designation_Companies" Association="Self.FK_Designation_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Designation" EntitySet="Designations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeDA_Companies" Association="Self.FK_GradeDA_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="GradeDA" EntitySet="GradeDAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grades_Companies" Association="Self.FK_Grades_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeTA_Companies" Association="Self.FK_GradeTA_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="GradeTA" EntitySet="GradeTAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventryItem_Companies" Association="Self.FK_inventryItem_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="inventryItem" EntitySet="inventryItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manufactuere_Companies" Association="Self.FK_Manufactuere_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Manufactuere" EntitySet="Manufactueres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models_Companies" Association="Self.FK_Models_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizations_Companies" Association="Self.FK_Organizations_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Organizations" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_Companies" Association="Self.FK_SubCategory_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SubCategory" EntitySet="SubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Companies" Association="Self.FK_Users_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_Cutomers" Association="Self.FK_Issue_Cutomers">
+      <End Role="Cutomers" EntitySet="Cutomers" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageIssue_Cutomers" Association="Self.FK_PackageIssue_Cutomers">
+      <End Role="Cutomers" EntitySet="Cutomers" />
+      <End Role="PackageIssue" EntitySet="PackageIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnItem_Cutomers" Association="Self.FK_ReturnItem_Cutomers">
+      <End Role="Cutomers" EntitySet="Cutomers" />
+      <End Role="ReturnItem" EntitySet="ReturnItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Departments" Association="Self.FK_Users_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Designation" Association="Self.FK_Users_Designation">
+      <End Role="Designation" EntitySet="Designations" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeDA_Grades" Association="Self.FK_GradeDA_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="GradeDA" EntitySet="GradeDAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GradeTA_Grades" Association="Self.FK_GradeTA_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="GradeTA" EntitySet="GradeTAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Grades" Association="Self.FK_Users_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventryItem_Manufactuere" Association="Self.FK_inventryItem_Manufactuere">
+      <End Role="Manufactuere" EntitySet="Manufactueres" />
+      <End Role="inventryItem" EntitySet="inventryItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventryItem_Models" Association="Self.FK_inventryItem_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="inventryItem" EntitySet="inventryItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inventryItem_SubCategory" Association="Self.FK_inventryItem_SubCategory">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="inventryItem" EntitySet="inventryItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Issue_inventryItem" Association="Self.FK_Issue_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemAttribute_inventryItem" Association="Self.FK_ItemAttribute_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="ItemAttribute" EntitySet="ItemAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_inventryItem" Association="Self.FK_Receipt_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnItem_inventryItem" Association="Self.FK_ReturnItem_inventryItem">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="ReturnItem" EntitySet="ReturnItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WeighBridgeItemValues_inventryItem1" Association="Self.FK_WeighBridgeItemValues_inventryItem1">
+      <End Role="inventryItem" EntitySet="inventryItems" />
+      <End Role="WeighBridgeItemValues" EntitySet="WeighBridgeItemValues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemAttribute_ItemAttributeType" Association="Self.FK_ItemAttribute_ItemAttributeType">
+      <End Role="ItemAttributeType" EntitySet="ItemAttributeTypes" />
+      <End Role="ItemAttribute" EntitySet="ItemAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemAttribute_Models" Association="Self.FK_ItemAttribute_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="ItemAttribute" EntitySet="ItemAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemsCatSubCat_ItemAttributeType" Association="Self.FK_ItemsCatSubCat_ItemAttributeType">
+      <End Role="ItemAttributeType" EntitySet="ItemAttributeTypes" />
+      <End Role="ItemsCatSubCat" EntitySet="ItemsCatSubCats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemsCatSubCat_SubCategory" Association="Self.FK_ItemsCatSubCat_SubCategory">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="ItemsCatSubCat" EntitySet="ItemsCatSubCats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models_Manufactuere" Association="Self.FK_Models_Manufactuere">
+      <End Role="Manufactuere" EntitySet="Manufactueres" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models_SubCategory" Association="Self.FK_Models_SubCategory">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationDoc_Organizations" Association="Self.FK_OrganizationDoc_Organizations">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="OrganizationDoc" EntitySet="OrganizationDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageBranchStock_WeighBridge" Association="Self.FK_PackageBranchStock_WeighBridge">
+      <End Role="WeighBridge" EntitySet="WeighBridges" />
+      <End Role="PackageBranchStock" EntitySet="PackageBranchStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageIssue_WeighBridge" Association="Self.FK_PackageIssue_WeighBridge">
+      <End Role="WeighBridge" EntitySet="WeighBridges" />
+      <End Role="PackageIssue" EntitySet="PackageIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_Supplier" Association="Self.FK_Receipt_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WeighBridgeItemValues_WeighBridge1" Association="Self.FK_WeighBridgeItemValues_WeighBridge1">
+      <End Role="WeighBridge" EntitySet="WeighBridges" />
+      <End Role="WeighBridgeItemValues" EntitySet="WeighBridgeItemValues" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ServicesPortalApiModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ServicesPortalApiModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

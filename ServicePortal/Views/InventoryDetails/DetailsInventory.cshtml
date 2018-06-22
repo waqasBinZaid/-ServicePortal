@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ServicePortal.Models.inventryItem>
+@{
+    ViewBag.Title = "DetailsInventory";
+    Layout = "~/Views/Shared/HeadofficeMasterPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        @foreach (var itm in Model)
+        {
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><b>@itm.SubCategory.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</b></h3>
+                </div>
+
+                <div class="panel-body">
+
+
+
+
+                    <div class="row show-grid">
+
+                      
+
+                        <div class="col-md-5">
+                            <b>Sales Description</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.SalesDescription
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Purchase Description</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.PurchaseDescription
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Models</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.Model.Models
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b>Avg. Purchase Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.AvgPurchasePrice
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b> Avg. Sale Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.AvgSalePrice
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b>Bottom Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.BottemPrice
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Trader Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.TradesPrice
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b> Qouted Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.QoutedPrice
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b>Total Quantity (Indvidual)</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @ViewBag.Qnty
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Total Quantity (Package)</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @ViewBag.pcQnty
+                            </center>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        }
+    </div>
+    <div class="col-lg-6">
+        @*@Html.Action("ItemAttribute", "Inventory");*@
+        @Html.Action("ListItemAttribute", "Inventory");
+        
+    </div>
+</div>
+<div class="row">
+    @Html.Action("AccesoriesDetails", "InventoryDetails")
+</div>
+
+<div class="row col-lg-12">
+    
+    <div class="col-lg-6">
+        @*@Html.Partial("~/Views/InventoryDetails/_BranchItems.cshtml")*@
+        @Html.Action("BranchItems", "InventoryDetails");
+    </div>
+    <div class="col-lg-6">
+        @Html.Action("BranchPackItems", "InventoryDetails");
+    </div>
+</div>

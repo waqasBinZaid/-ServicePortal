@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ServicePortal.Models.User>
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-4 col-md-offset-4">
+
+    @Html.ActionLink("Add New ", "AddNewAdmin", "SuperAdmin", new { @class = "btn btn-outline btn-primary btn-lg btn-block" })
+</div>
+<br><br><br>
+<div class="panel panel-default">
+    <div class="panel-heading">
+       List Of Super Admins
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>Pictuer</th>
+                        <th>FullName</th>
+                        <th>Phone</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th>Action</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src=@itm.PictuerPath style="width:80px; height:80px;" alt="auto" />
+                            </td>
+                            <td>@itm.FullName</td>
+                            <td>@itm.UserCal1</td>
+                            <td>@itm.UserName</td>
+                            <td>@itm.Email</td>
+
+
+
+
+                            <td>
+                                <a href="@Url.Action("Delete","SuperAdmin",new {id=itm.id })" class="btn btn-danger btn-circle" title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </a>
+
+                                <a href="#" class="btn btn-primary btn-circle" title="Edit">
+                                    <i class="fa fa-list"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>

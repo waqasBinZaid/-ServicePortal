@@ -1,0 +1,81 @@
+﻿@model ServicePortal.Models.ItemAttribute
+@{
+    ViewBag.Title = "Ittem Attribute";
+    Layout = null;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Attribute Value
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("SaveItemAttributeVal", "Inventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+                {
+
+                <div class="col-md-12">
+
+                    <div class="form-group has-success" id="lddiv">
+
+                        <label class="control-label" for="inputSuccess">Select Item Attribute</label>
+                        <br>
+
+                        @*@Html.DropDownListFor(m => m.ItemAttributeID, ViewBag.ItemType as List<SelectListItem>, new { @class = "form-control", placeholder = "Items", required = "required", })*@
+                        <a href="#" class="form-control" id="atvalue" data-target="#attrival" data-toggle="modal">+</a>
+                    </div>
+                    <br>
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Value</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.ItemAttributeValue, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Value", required = "required" })
+
+                    </div>
+                    <br><br>
+                </div>
+                    
+                    <div class="form-group has-success">
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                    </div>
+
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#").click(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/SaveItemAttribute',
+                data: $('#').serialize(),
+
+                success: function (response) {
+                    alert("Data Save Succesfully");
+                    location.href = "/InventoryDetails/DetailsInventory"
+                    
+                }
+
+            });
+            return false
+        
+        });
+    });
+        </script >

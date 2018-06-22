@@ -1,0 +1,853 @@
+﻿@model ServicePortal.Models.inventryItem
+@{
+    ViewBag.Title = "NewInv";
+    Layout = "~/Views/Shared/HeadofficeMasterPage.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add New Items
+        @{
+
+            string x = Session["UpdateSubcatName"].ToString();
+            string ModelVal = Session["updateModel"].ToString();
+            string Category = Session["UpdatCatName"].ToString();
+        }
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("Save", "Inventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.id);
+                    if (TempData["itemalready"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["itemalready"]
+                            </div>
+
+                        </div>
+                    }
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div id="divss">
+                                <div class="form-group has-success" id="lddiv">
+
+                                    <label class="control-label" for="inputSuccess">Category</label>
+                                    <br>
+
+                                    @Html.DropDownList("Cat", ViewBag.Cat as List<SelectListItem>, new { @class = "form-control", placeholder = "Category" })
+                                    @Html.TextBox("nbb", Category, new { @class = "form-control", id = "cattxt" })
+                                    <a href="#" class="form-control" id="btncat2" data-target="#myModal2" data-toggle="modal">+</a>
+
+                                </div>
+
+                                <div class="form-group has-success" id="lddiv2">
+
+                                    <label class="control-label" for="inputSuccess">Sub Category</label>
+                                    <br>
+                                    @Html.DropDownListFor(m => m.CatID, new SelectList(""), "Select SubCatgory", new { @class = "form-control", id = "CatID" })
+                                    <a href="#" class="form-control" id="newcat" data-target="#myModal" data-toggle="modal">+</a>
+                                    <input type="button" class="btn btn-default" value="view Attribute" id="btnaddattribute">
+                                </div>
+
+                                <div class="form-group has-success" id="lddiv3">
+                                    <label class="control-label" for="inputSuccess">Sub Category</label>
+                                    <br>
+                                    @Html.TextBox("abc", x, new { @class = "form-control", id = "catidtxt" })
+
+                                </div>
+
+                                <div class="form-group has-success" id="manfact">
+
+                                    <label class="control-label" for="inputSuccess">Manfacturer</label>
+                                    <br>
+                                    @Html.DropDownListFor(m => m.ManFaceID, ViewBag.Manfacturer as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", id = "manfac" })
+                                    <a href="#" class="form-control" id="newman" data-target="#manmodal" data-toggle="modal">+</a>
+
+                                </div>
+
+
+                                <div class="form-group has-success">
+
+                                    <label class="control-label" for="inputSuccess">Models</label>
+                                    <br>
+                                    @Html.DropDownListFor(m => m.ModelID, new SelectList(""), "Select Model", new { @class = "form-control", id = "ModelID" })
+                                    @Html.TextBox("xyz", ModelVal, new { @class = "form-control", id = "mdtxt" })
+                                    <a href="#" id="newmd" class="form-control" data-target="#myModalmd" data-toggle="modal">+</a>
+                                    <input type="button" class="btn btn-default" value="Attribute Value" id="btnattributevalue"><br><br>
+                                    <a href="#" id="btnaccesories" class="btn btn-outline btn-danger btn-block" data-target="#accval" data-toggle="modal">Click To Add Accessories</a>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Serial No</label>
+                                <br>
+                                @Html.RadioButtonFor(m => m.SerialNo, "Yes") Required
+                                @Html.RadioButtonFor(m => m.SerialNo, "No", new { @checked = "true" }) Not Required
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Avg.Sale Price</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.AvgSalePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.Sale Price", type = "Text", })
+                            </div>
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Avg.PurchasePrice</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.AvgPurchasePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.PurchasePrice", })
+
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">BottomPrice</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.BottemPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "BottomPrice" })
+
+                            </div>
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Internal Price</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.InternalPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Internal Price", type = "Text" })
+
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Pictuer</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Image, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", type = "file" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Trader Price</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.TradesPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Trader Price", type = "Text" })
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Quoted Price</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.QoutedPrice, null, new { @class = "form-control", id = "qtpr", placeholder = "Quoted Price", type = "Text" })
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Sales Description</label>
+                                <br>
+                                @Html.TextAreaFor(m => m.SalesDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", required = "required", @row = "10" })
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Purchase Description</label>
+                                <br>
+                                @Html.TextAreaFor(m => m.PurchaseDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", required = "required", @row = "10" })
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group has-success">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Click To Save</button>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@*@Html.Action("CombinationList", "Inventory")*@
+
+<!-- Modal for Manfacturer -->
+<div class="modal fade" id="manmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Manfacturer</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="manform">
+
+                    <div class="form-group">
+                        <label> Name  </label>
+                        <input type="text" class="form-control" name="Manufactuere1" placeholder="Enter Name" required="required">
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default" id="btnman" value="Submit" />
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End  Modal for Manfacturer -->
+<!-- Modal for Category -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Category</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="catform">
+
+                    <div class="form-group">
+                        <label> Name  </label>
+                        <input type="text" class="form-control" name="Catgory" placeholder="Enter Name" required="required">
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default" id="btncat" value="Submit" />
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End  Modal for Category -->
+<!-- Modal for Sub Category -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Sub Category</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="subcform">
+
+                    <div class="form-group">
+                        <label> Name  </label>
+                        <input type="text" class="form-control" name="SubCat" placeholder="Enter Name" required="required" id="valueSubCat">
+
+                    </div>
+
+
+                    <input type="submit" class="btn btn-default" id="btnsub" value="Submit" />
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End  Modal for Sub Category -->
+<!-- Modal for Model -->
+<div class="modal fade" id="myModalmd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Manufacturer</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="mdform">
+
+                    <div class="form-group">
+                        <label> Model Name  </label>
+                        <input type="text" class="form-control" name="Models" placeholder="Enter Name" required="required" id="modelname">
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default" id="btnmd" value="Submit" />
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End  Modal for Model -->
+<!-- Modal for Items Cat Sub Cat -->
+<div class="modal fade" id="modeltest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Item</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="catsbform" method="post">
+
+                    <div class="form-group">
+                        <label> Select Attribute  </label>
+                        @Html.DropDownList("AttTypeID", ViewBag.ItemAttribute as List<SelectListItem>, new { @class = "form-control", required = "required" })
+                        <a href="#" class="form-control" data-target="#attrival" data-toggle="modal">+</a>
+                    </div>
+                    <input type="button" class="btn btn-default" id="catsubcat" value="Submit" />
+
+                    <br> <hr>
+                    <div id="list">
+                        @Html.Action("buteList", "Inventory");
+
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End  Modal for model test -->
+<!--Modal for model Attribute Type -->
+<div class="modal fade" id="attrival" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="itmvalform">
+
+                    <div class="form-group">
+                        <label>Attribute Name  </label>
+                        <input type="text" class="form-control" name="ItemAttribute" placeholder="Enter Name" required="required">
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default" id="btnatval" value="Submit" />
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End Modal for model Attribute Type -->
+<!--Modal for Data Against Model Type -->
+<div class="modal fade" id="modalvalag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+
+            <div class="modal-body">
+                <hr>
+                <div id="noo">
+                    @Html.Action("AttributListForValue", "Inventory");
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End Modal for Data Against Model Type -->
+<!--Modal for Accesories -->
+<div class="modal fade" id="accval" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="itmvalform">
+
+                    <div class="form-group">
+                        <label>Select Accessory</label>
+                        @Html.DropDownList("AccessoryID", ViewBag.AccesoriesItems as List<SelectListItem>, new { @class = "form-control", placeholder = "Accessory" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" name="Description" placeholder="Add Description" required="required" id="Description"></textarea>
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default" id="btnacces" value="Submit" />
+
+                </form>
+                <br>
+                <div id="acclist">
+
+                    @Html.Action("AccessoryListReturn", "Inventory")
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--End Modal forAccesories -->
+
+<script src="~/Content/assets/plugins/jquery-1.10.2.js"></script>
+<script src="~/Content/assets/plugins/bootstrap/bootstrap.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnsub").click(function () {
+            CatId = $("#Cat").val();
+            SubCat = $("#valueSubCat").val();
+            debugger
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/SubCatSave',
+                data: {
+                    CatId: $("#Cat").val(),
+                    SubCat: $("#valueSubCat").val(),
+                },
+
+                success: function (response) {
+                    if (response == "alrdy") {
+                        alert("Subcategory Already Exist");
+                    }
+                    else {
+                        alert("Data Save Succesfully");
+                    }
+
+                }
+
+            });
+
+        });
+        $("#btncat").click(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/CatSave',
+                data: $('#catform').serialize(),
+
+                success: function (response) {
+                    if (response == "alrdyct") {
+
+                        alert("Category Already Exist");
+                    }
+                    else {
+                    alert("Data Save Succesfully");
+                        //window.location.reload(true);
+                        //console.log(response);
+                        //JQuery("#Cat").html(response);
+                    }
+                }
+
+            });
+
+        });
+        $("#btnman").click(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/ManSave',
+                data: $("#manform").serialize(),
+
+                success: function (response) {
+                    if (response == "alrdyct") {
+
+                        alert("Category Already Exist");
+                    }
+                    else {
+                        alert("Data Save Succesfully");
+                        window.location.reload(true);
+                    }
+
+                }
+
+            });
+
+        });
+
+        $("#btnmd").click(function () {
+            var Models = $("#modelname").val();
+            var M_CatId = $("#Cat").val();
+            var M_SubCatId = $("#CatID").val();
+            var M_ManFacID = $("#manfac").val();
+            if (M_CatId != "" & M_SubCatId != "" & M_ManFacID != "") {
+                $.ajax({
+                    type: 'post',
+                    url: '/Inventory/ModelSave',
+                    data: {
+                        Models: $("#modelname").val(),
+                        M_CatId: $("#Cat").val(),
+                        M_SubCatId: $("#CatID").val(),
+                        M_ManFacID: $("#manfac").val(),
+                    },
+
+                    success: function (response) {
+                        if (response == "error") {
+
+                            alert("Enter Model Name");
+                        }
+                        else if (response == "alrdyct") {
+                            alert("This Model Is already Exist");
+                        }
+                        else {
+                            alert("Data Save Succesfully");
+                            location.reload(true);
+                        }
+                    }
+
+                });
+            }
+            else {
+                alert("Above Fields cannot be null")
+            }
+            return false
+        });
+        $("#manfac").change(function () {
+
+            $.get("/Inventory/ModalDropDown", {
+                CatId: $("#Cat").val(),
+                SubCatId: $("#CatID").val(),
+                ManfacId: $("#manfac").val()
+            },
+                function (data) {
+
+                    $("#ModelID").empty();
+                $.each(data, function (index, row) {
+                    $("#ModelID").append(
+                        "<option value='" + row.id + "'>" + row.Models + "</option> "
+                    )
+
+                });
+            });
+            return false
+
+
+
+                    $.ajax({
+                        type: 'post',
+                        url: '/Inventory/ModleDropDown',
+                        data: {
+
+                        },
+
+                        success: function (response) {
+
+                        }
+
+                    });
+
+
+        });
+
+        $("#Cat").change(function () {
+
+            $.get("/Inventory/SubjectByClassJs", { id: $("#Cat").val() }, function (data) {
+
+                $("#CatID").empty();
+                $.each(data, function (index, row) {
+                    $("#CatID").append(
+                        "<option value='" + row.id + "'>" + row.SubCat + "</option> "
+                    )
+
+                });
+            });
+            return false
+
+        });
+
+        $("#btnaddattribute").click(function () {
+
+            $("#modeltest").modal("show");
+        });
+
+        $("#catsubcat").click(function () {
+
+            $.ajax({
+
+                type: 'post',
+                url: '/Inventory/CatSubCatSave',
+                data: {
+
+                    CatID: $("#Cat").val(),
+                    SubCatID: $("#CatID").val(),
+                    AttTypeID: $("#AttTypeID").val()
+                },
+
+                success: function (response) {
+                    if (response == "errorr") {
+                        alert("Attribute Already Exist");
+                    }
+                    else{
+
+                        console.log(response);
+                        List();
+
+                    }
+                }
+
+            });
+
+            function List() {
+                $.ajax({
+                    url: '/Inventory/buteList',
+                    success: function (response) {
+                        $('#list').html(response);
+                    }
+                });
+            }
+
+        });
+
+        $("#btnacces").click(function () {
+            CatID = $("#Cat").val();
+            SubCatID = $("#CatID").val();
+            ModelID = $("#ModelID").val();
+            AccessoryID = $("#AccessoryID").val();
+            Description = $("#Description").val();
+          
+            if (CatID == "" || SubCatID == "" || ModelID == "" || AccessoryID == "" || Description == "") {
+                alert("Please Select Category , SubCategory , Model , Accessory and Description")
+            }
+            else {
+
+            $.ajax({
+
+                type: 'post',
+                url: '/Inventory/AccesorySave',
+                data: {
+
+                    CatID: $("#Cat").val(),
+                    SubCatID: $("#CatID").val(),
+                    ModelID: $("#ModelID").val(),
+                    AccessoryID: $("#AccessoryID").val(),
+                    Description: $("#Description").val()
+
+                },
+
+                success: function (res) {
+                    if (res == "errorr") {
+                        alert("Accessory Already Exist");
+                    }
+                    else {
+
+                        console.log(res);
+                        AccesList();
+
+                    }
+                }
+
+            });
+            }
+            function AccesList() {
+                $.ajax({
+                    url: '/Inventory/AccessoryListReturn',
+                    success: function (res) {
+                        $('#acclist').html(res);
+                    }
+                });
+            }
+            return false
+        });
+        $("#btnaccesories").click(function () {
+
+            $.ajax({
+
+                type: 'post',
+                url: '/Inventory/AccessoryList',
+                data: {
+
+                    CatID: $("#Cat").val(),
+                    SubCatID: $("#CatID").val(),
+                    ModelID: $("#ModelID").val(),
+                   
+                },
+                success: function (res) {
+                    $('#acclist').html(res);
+                }
+            });
+        
+        });
+
+        $("#btnaddattribute").click(function () {
+            $.ajax({
+
+                type: 'post',
+                url: '/Inventory/catsubcat',
+                data: {
+
+                    CatID: $("#Cat").val(),
+                    SubCatID: $("#CatID").val(),
+
+                },
+
+                success: function (response) {
+                    $('#list').html(response);
+                }
+
+            });
+
+        });
+
+        $("#btnatval").click(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/SaveItemAttribute',
+                data: $('#itmvalform').serialize(),
+
+                success: function (response) {
+                    if (response == "itmatt") {
+
+                        alert("Attribute Already Exist")
+                    }
+                    else {
+
+                    alert("Data Save Succesfully");
+                    $("#attrival").modal("hide");
+
+                    }
+                }
+
+            });
+            return false
+
+        });
+
+        $("#btnattributevalue").click(function () {
+            var Cat = $("#Cat").val();
+            var subcat = $("#CatID").val();
+            var ModelID = $("#ModelID").val();
+            debugger
+            if (ModelID == null) {
+                alert("Please Select Model First")
+            }
+            else if (Cat != "" & subcat != "") {
+
+                $("#modalvalag").modal("show");
+
+                $.ajax({
+                    type: 'post',
+                    url: '/Inventory/CatSubCatAgainstModal',
+                    data: {
+
+                        Cat: $("#Cat").val(),
+                        SubCat: $("#CatID").val(),
+                        ModelID: $("#ModelID").val()
+                    },
+
+                    success: function (response) {
+
+                        $('#noo').html(response);
+                    }
+
+                });
+            }
+            else {
+                alert("Please select Category Or sub category to complete this process");
+            }
+
+            return false
+        });
+
+        $(function Disable() {
+
+            var x = '@Session["UpdateSubcatName"]';
+
+            var y = '@Session["UpdatCatName"]';
+
+            if (x != "" || y != "") {
+                $("#Cat").prop("disabled", true);
+
+                $("#CatID").prop("disabled", true);
+                $("#newcat").hide();
+
+                $("#mdtxt").prop("disabled", true);
+                $("#btncat2").hide();
+                $("#btnaddattribute").prop("disabled", true);
+                $("#btnattributevalue").hide();
+                $("#newmd").hide();
+                $("#catidtxt").prop("disabled", true);
+                $("#manfac").prop("disabled", true);
+                $("#newman").hide();
+                $("#cattxt").prop("disabled", true);
+
+
+            }
+            else {
+                $("#Cat").prop("disabled", false);
+
+                $("#CatID").prop("disabled", false);
+                $("#newcat").prop("disabled", false);
+
+                $("#ModelID").prop("disabled", false);
+
+            }
+
+        });
+
+        $(function DropdownDisable() {
+
+            var x = '@Session["edithide"]';
+            if (x == "edt") {
+
+                $("#lddiv2").hide();
+                $("#ModelID").hide();
+                $("#Cat").hide();
+                $("#btnaccesories").hide();
+
+            }
+            else {
+                $("#lddiv3").hide();
+                $("#mdtxt").hide();
+                $("#cattxt").hide();
+            }
+
+
+        });
+
+    });
+</script>

@@ -1,0 +1,176 @@
+﻿@model ServicePortal.Models.User
+@{
+    ViewBag.Title = "AddNewStaff";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Staff
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("SaveStaff", "StaffManagment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.id);
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+
+                        </div>
+                    }
+                    <div class="row col-md-12">
+
+                        <div class="col-md-4">
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">FullName</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.FullName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Name", required = "required" })
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">UserName</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.UserName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "UserName", required = "required" })
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Email</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Email", required = "required", type = "Email" })
+
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Password</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Password", required = "required", type = "password" })
+
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Phone</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.UserCal1, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", required = "required" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Phone</label>
+                                <br>
+
+                                @Html.TextBoxFor(m => m.UserCal2, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone2 Optional" })
+
+                            </div>
+
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Address</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Address1, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Line1", required = "required" })
+
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Address</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Address2, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Line2" })
+
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">City</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.City, null, new { @class = "form-control", id = "inputSuccess", placeholder = "City", required = "required"})
+
+                            </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Country</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Country, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Country", required = "required" })
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Department</label>
+                                <br>
+
+                                @Html.DropDownListFor(b => b.DepartmentId, ViewBag.Dept as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", placeholder = "Department", required = "required" })
+
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Designation</label>
+                                <br>
+
+                                @Html.DropDownListFor(b => b.DesigantionId, ViewBag.Designation as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", placeholder = "Designation", required = "required" })
+
+
+                            </div>
+
+
+                            <br>
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">JoiningDate</label>
+                                <br>
+                                @Html.TextBoxFor(m =>m.JoininDate, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Designation", required = "required" , type="date"})
+
+                            </div>
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Pictuer</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.PictuerPath, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", type = "file" })
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group has-success">
+
+                                <button type="submit" class="btn btn-primary">Click To submit Data</button>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

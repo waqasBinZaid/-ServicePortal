@@ -1,0 +1,154 @@
+﻿@model ServicePortal.Models.Company
+@{
+    ViewBag.Title = "NewCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add New company
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("CompanySave", "Companies", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+
+                        </div>
+                    }
+                    <div class="row col-md-12">
+                      <div class="col-md-4">
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">CompanyName</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.CompanyName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "CompanyName", required = "required" })
+                    </div>
+                    
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">ContectPerson</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.ContectPerson, null, new { @class = "form-control", id = "inputSuccess", placeholder = "ContectPerson", required = "required" })
+                    </div>
+
+                    <div class="form-group has-success" style="width:300px">
+
+                        <label class="control-label" for="inputSuccess">Email</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Email", required = "required", type = "Email" })
+
+
+
+
+
+                    </div>
+                        
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">WebSiteLink</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Web, null, new { @class = "form-control", id = "inputSuccess", placeholder = "websites", required = "required" })
+
+
+
+
+
+                            </div>
+                          </div>
+
+                        <div class="col-md-4">
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Phone</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Call1, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", required = "required",  })
+
+
+                            </div>
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Phone</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.CAll2, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone2 /optional" })
+
+
+                            </div>
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Address</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Address1, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Address", required = "required", })
+
+                            </div>
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Address</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Address2, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Address2 /optional" })
+
+
+                            </div>
+                            </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">City</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.City, null, new { @class = "form-control", id = "inputSuccess", placeholder = "City", required = "required" })
+
+
+
+
+
+                            </div>
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Country</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Country, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Country", required = "required" })
+
+
+
+
+
+                            </div>
+
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Pictuer</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Logo, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Logo", type = "file" })
+                            </div>
+                            <br>     <br>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+
+                            </div>
+                        </div>  
+                        </div>   
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
