@@ -468,3 +468,5 @@ F:\IBTS\ServicePortal(20-06-2018)\ServicePortal\obj\Debug\ServicePortal.csproj.C
 F:\IBTS\ServicePortal(20-06-2018)\ServicePortal\obj\Debug\ServicePortal.csproj.CopyComplete
 F:\IBTS\ServicePortal(20-06-2018)\ServicePortal\obj\Debug\ServicePortal.dll
 F:\IBTS\ServicePortal(20-06-2018)\ServicePortal\obj\Debug\ServicePortal.pdb
+F:\IBTS\ServicePortal\ServicePortal\obj\Debug\ServicePortal.csproj.CoreCompileInputs.cache
+F:\IBTS\ServicePortal\ServicePortal\obj\Debug\ServicePortal.csproj.CopyComplete

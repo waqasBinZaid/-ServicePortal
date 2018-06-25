@@ -14,7 +14,7 @@
           <Property Name="SubCatID" Type="int" Nullable="false" />
           <Property Name="ModelID" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="AccessoryID" Type="int" Nullable="false" />
+          <Property Name="AccessoryID" Type="int" />
         </EntityType>
         <EntityType Name="Branches">
           <Key>
@@ -531,18 +531,6 @@
             </Principal>
             <Dependent Role="Accesories">
               <PropertyRef Name="CatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Accesories_inventryItem">
-          <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
-          <End Role="Accesories" Type="Self.Accesories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="inventryItem">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Accesories">
-              <PropertyRef Name="AccessoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1348,10 +1336,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Accesories" EntitySet="Accesories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Accesories_inventryItem" Association="Self.FK_Accesories_inventryItem">
-            <End Role="inventryItem" EntitySet="inventryItem" />
-            <End Role="Accesories" EntitySet="Accesories" />
-          </AssociationSet>
           <AssociationSet Name="FK_Accesories_Models" Association="Self.FK_Accesories_Models">
             <End Role="Models" EntitySet="Models" />
             <End Role="Accesories" EntitySet="Accesories" />
@@ -1610,9 +1594,8 @@
           <Property Name="SubCatID" Type="Int32" Nullable="false" />
           <Property Name="ModelID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <Property Name="AccessoryID" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Accesories_Category" FromRole="Accesories" ToRole="Category" />
-          <NavigationProperty Name="inventryItem" Relationship="Self.FK_Accesories_inventryItem" FromRole="Accesories" ToRole="inventryItem" />
           <NavigationProperty Name="Model" Relationship="Self.FK_Accesories_Models" FromRole="Accesories" ToRole="Models" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK_Accesories_SubCategory" FromRole="Accesories" ToRole="SubCategory" />
         </EntityType>
@@ -1872,7 +1855,6 @@
           <Property Name="SerialNo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ManFaceID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Accesories" Relationship="Self.FK_Accesories_inventryItem" FromRole="inventryItem" ToRole="Accesories" />
           <NavigationProperty Name="BranchStocks" Relationship="Self.FK_BranchStocks_inventryItem" FromRole="inventryItem" ToRole="BranchStocks" />
           <NavigationProperty Name="Company" Relationship="Self.FK_inventryItem_Companies" FromRole="inventryItem" ToRole="Companies" />
           <NavigationProperty Name="Manufactuere" Relationship="Self.FK_inventryItem_Manufactuere" FromRole="inventryItem" ToRole="Manufactuere" />
@@ -2253,18 +2235,6 @@
             </Principal>
             <Dependent Role="Accesories">
               <PropertyRef Name="CatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Accesories_inventryItem">
-          <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
-          <End Role="Accesories" Type="Self.Accesory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="inventryItem">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Accesories">
-              <PropertyRef Name="AccessoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3037,10 +3007,6 @@
           <EntitySet Name="WeighBridgeItemValues" EntityType="Self.WeighBridgeItemValue" />
           <AssociationSet Name="FK_Accesories_Category" Association="Self.FK_Accesories_Category">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="Accesories" EntitySet="Accesories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Accesories_inventryItem" Association="Self.FK_Accesories_inventryItem">
-            <End Role="inventryItem" EntitySet="inventryItems" />
             <End Role="Accesories" EntitySet="Accesories" />
           </AssociationSet>
           <AssociationSet Name="FK_Accesories_Models" Association="Self.FK_Accesories_Models">

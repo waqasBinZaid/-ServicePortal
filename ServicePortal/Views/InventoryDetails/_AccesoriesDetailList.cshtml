@@ -15,20 +15,29 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
+                        <th>Description</th>
                         <th>Accessories</th>
-                        <th>Desctiption</th>
-                       
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var itm in Model)
                     {
-                        <tr>
+                    <tr>
+                        <td style="width:700px">@itm.Description</td>
+                        @if (itm.AccessoryID == null)
+    {
+                        <td>This product is not part of our stock</td>
 
-                            <td>@itm.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</td>
-                            <td>@itm.Description</td>
+}
+else
+{
+                    <td>@itm.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</td>
+}
 
-                        </tr>
+
+
+                    </tr>
 
 
                     }

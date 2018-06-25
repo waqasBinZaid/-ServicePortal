@@ -42,7 +42,7 @@
                                     <label class="control-label" for="inputSuccess">Category</label>
                                     <br>
 
-                                    @Html.DropDownList("Cat", ViewBag.Cat as List<SelectListItem>, new { @class = "form-control", placeholder = "Category" })
+                                    @Html.DropDownList("Cat", ViewBag.Cat as List<SelectListItem>, new { @class = "form-control", placeholder = "Category"})
                                     @Html.TextBox("nbb", Category, new { @class = "form-control", id = "cattxt" })
                                     <a href="#" class="form-control" id="btncat2" data-target="#myModal2" data-toggle="modal">+</a>
 
@@ -68,7 +68,7 @@
 
                                     <label class="control-label" for="inputSuccess">Manfacturer</label>
                                     <br>
-                                    @Html.DropDownListFor(m => m.ManFaceID, ViewBag.Manfacturer as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", id = "manfac" })
+                                    @Html.DropDownListFor(m => m.ManFaceID, ViewBag.Manfacturer as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", id = "manfac"})
                                     <a href="#" class="form-control" id="newman" data-target="#manmodal" data-toggle="modal">+</a>
 
                                 </div>
@@ -78,7 +78,7 @@
 
                                     <label class="control-label" for="inputSuccess">Models</label>
                                     <br>
-                                    @Html.DropDownListFor(m => m.ModelID, new SelectList(""), "Select Model", new { @class = "form-control", id = "ModelID" })
+                                    @Html.DropDownListFor(m => m.ModelID, new SelectList(""), "Select Model", new { @class = "form-control", id = "ModelID"})
                                     @Html.TextBox("xyz", ModelVal, new { @class = "form-control", id = "mdtxt" })
                                     <a href="#" id="newmd" class="form-control" data-target="#myModalmd" data-toggle="modal">+</a>
                                     <input type="button" class="btn btn-default" value="Attribute Value" id="btnattributevalue"><br><br>
@@ -104,28 +104,28 @@
 
                                 <label class="control-label" for="inputSuccess">Avg.Sale Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.AvgSalePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.Sale Price", type = "Text", })
+                                @Html.TextBoxFor(m => m.AvgSalePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.Sale Price", type = "Text", required = "required" })
                             </div>
                             <div class="form-group has-success">
 
-                                <label class="control-label" for="inputSuccess">Avg.PurchasePrice</label>
+                                <label class="control-label" for="inputSuccess">Avg.Purchase Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.AvgPurchasePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.PurchasePrice", })
+                                @Html.TextBoxFor(m => m.AvgPurchasePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.PurchasePrice", required = "required" })
 
                             </div>
 
                             <div class="form-group has-success">
 
-                                <label class="control-label" for="inputSuccess">BottomPrice</label>
+                                <label class="control-label" for="inputSuccess">Bottom Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.BottemPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "BottomPrice" })
+                                @Html.TextBoxFor(m => m.BottemPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "BottomPrice", required = "required" })
 
                             </div>
                             <div class="form-group has-success">
 
                                 <label class="control-label" for="inputSuccess">Internal Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.InternalPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Internal Price", type = "Text" })
+                                @Html.TextBoxFor(m => m.InternalPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Internal Price", type = "Text", required = "required" })
 
                             </div>
 
@@ -140,16 +140,16 @@
 
                             <div class="form-group has-success">
 
-                                <label class="control-label" for="inputSuccess">Trader Price</label>
+                                <label class="control-label" for="inputSuccess">Trade Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.TradesPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Trader Price", type = "Text" })
+                                @Html.TextBoxFor(m => m.TradesPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Trader Price", type = "Text", required = "required" })
                             </div>
 
                             <div class="form-group has-success">
-
+ 
                                 <label class="control-label" for="inputSuccess">Quoted Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.QoutedPrice, null, new { @class = "form-control", id = "qtpr", placeholder = "Quoted Price", type = "Text" })
+                                @Html.TextBoxFor(m => m.QoutedPrice, null, new { @class = "form-control", id = "qtpr", placeholder = "Quoted Price", type = "Text", required = "required" })
                             </div>
 
                             <div class="form-group has-success">
@@ -165,9 +165,6 @@
                                 <br>
                                 @Html.TextAreaFor(m => m.PurchaseDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", required = "required", @row = "10" })
                             </div>
-
-
-
                         </div>
 
                     </div>
@@ -401,18 +398,18 @@
 
             <div class="modal-body">
                 <form id="itmvalform">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" name="Description" placeholder="Add Description" required="required" id="Description"></textarea>
 
+                    </div>
                     <div class="form-group">
                         <label>Select Accessory</label>
                         @Html.DropDownList("AccessoryID", ViewBag.AccesoriesItems as List<SelectListItem>, new { @class = "form-control", placeholder = "Accessory" })
 
                     </div>
 
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" name="Description" placeholder="Add Description" required="required" id="Description"></textarea>
 
-                    </div>
 
                     <input type="submit" class="btn btn-default" id="btnacces" value="Submit" />
 
@@ -508,7 +505,6 @@
             });
 
         });
-
         $("#btnmd").click(function () {
             var Models = $("#modelname").val();
             var M_CatId = $("#Cat").val();
@@ -648,9 +644,9 @@
             ModelID = $("#ModelID").val();
             AccessoryID = $("#AccessoryID").val();
             Description = $("#Description").val();
-          
-            if (CatID == "" || SubCatID == "" || ModelID == "" || AccessoryID == "" || Description == "") {
-                alert("Please Select Category , SubCategory , Model , Accessory and Description")
+            debugger
+            if (CatID == "" || SubCatID == "" || ModelID == "" || Description == "") {
+                alert("Please Select Category , SubCategory , Model , and Description")
             }
             else {
 

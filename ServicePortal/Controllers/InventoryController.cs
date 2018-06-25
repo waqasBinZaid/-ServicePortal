@@ -45,6 +45,11 @@ namespace ServicePortal.Controllers
 
         public ActionResult NewInv(int id = 0)
         {
+            for(int i=1; i<100; i++)
+            {
+                Session["AccessoryNullOrNot"+i] = "";
+            }
+            
 
             ViewBag.Cat = DropDownHandler.Category();
            // ViewBag.Model = DropDownHandler.Model();
@@ -336,18 +341,18 @@ namespace ServicePortal.Controllers
 
         public ActionResult AccesorySave(Accesory acc)
         {
-            var data = db.Accesories.Where(m => m.CatID == acc.CatID & m.SubCatID == acc.SubCatID & m.ModelID == acc.ModelID & m.AccessoryID == acc.AccessoryID).FirstOrDefault();
-            if(data != null)
-            {
-                return Content("errorr");
-            }
-            else
-            {
+            //var data = db.Accesories.Where(m => m.CatID == acc.CatID & m.SubCatID == acc.SubCatID & m.ModelID == acc.ModelID ).FirstOrDefault();
+            //if(data != null)
+            //{
+            //    return Content("errorr");
+            //}
+            //else
+            //{
                 db.Accesories.Add(acc);
                 db.SaveChanges();
                 return Content("save");
 
-            }
+           // }
 
            
         }
@@ -365,7 +370,14 @@ namespace ServicePortal.Controllers
             int subcatid = Convert.ToInt32(Session["sbctid"]);
             int ModelID = Convert.ToInt32(Session["mdid"]);
             var data = db.Accesories.Where(m => m.CatID == Catid & m.SubCatID == subcatid & m.ModelID == ModelID).ToList();
-
+            int c = 1;
+            foreach(var itm in data)
+            {
+                Session["AccessoryNullOrNot"+c] = itm.AccessoryID;
+                c++;
+            }
+            
+            
             return PartialView("~/Views/Inventory/_AccessoriesList.cshtml",data);
         }
         public ActionResult AccessoriesDelete(int id = 0)

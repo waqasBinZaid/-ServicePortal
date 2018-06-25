@@ -8,23 +8,13 @@
     <div class="col-lg-6">
         @foreach (var itm in Model)
         {
-
-
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3><b>@itm.SubCategory.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</b></h3>
                 </div>
 
                 <div class="panel-body">
-
-
-
-
                     <div class="row show-grid">
-
-                      
-
                         <div class="col-md-5">
                             <b>Sales Description</b>
                         </div>
@@ -40,6 +30,15 @@
                         <div class="col-md-7">
                             <center>
                                 @itm.PurchaseDescription
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Manufacturer</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.Manufactuere.Manufactuere1
                             </center>
                         </div>
 
@@ -116,9 +115,7 @@
                 </div>
 
             </div>
-
-
-
+            
         }
     </div>
     <div class="col-lg-6">

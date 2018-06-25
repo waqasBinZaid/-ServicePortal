@@ -9,7 +9,7 @@
     <Property Name="SubCatID" Type="int" Nullable="false" />
     <Property Name="ModelID" Type="int" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="AccessoryID" Type="int" Nullable="false" />
+    <Property Name="AccessoryID" Type="int" />
   </EntityType>
   <EntityType Name="Branches">
     <Key>
@@ -526,18 +526,6 @@
       </Principal>
       <Dependent Role="Accesories">
         <PropertyRef Name="CatID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Accesories_inventryItem">
-    <End Role="inventryItem" Type="Self.inventryItem" Multiplicity="1" />
-    <End Role="Accesories" Type="Self.Accesories" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="inventryItem">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Accesories">
-        <PropertyRef Name="AccessoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1341,10 +1329,6 @@
     <EntitySet Name="WeighBridgeItemValues" EntityType="Self.WeighBridgeItemValues" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Accesories_Category" Association="Self.FK_Accesories_Category">
       <End Role="Category" EntitySet="Category" />
-      <End Role="Accesories" EntitySet="Accesories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Accesories_inventryItem" Association="Self.FK_Accesories_inventryItem">
-      <End Role="inventryItem" EntitySet="inventryItem" />
       <End Role="Accesories" EntitySet="Accesories" />
     </AssociationSet>
     <AssociationSet Name="FK_Accesories_Models" Association="Self.FK_Accesories_Models">

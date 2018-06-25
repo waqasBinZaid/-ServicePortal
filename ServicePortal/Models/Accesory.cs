@@ -19,10 +19,9 @@ namespace ServicePortal.Models
         public int SubCatID { get; set; }
         public int ModelID { get; set; }
         public string Description { get; set; }
-        public int AccessoryID { get; set; }
+        public Nullable<int> AccessoryID { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual inventryItem inventryItem { get; set; }
         public virtual Model Model { get; set; }
         public virtual SubCategory SubCategory { get; set; }
     }
