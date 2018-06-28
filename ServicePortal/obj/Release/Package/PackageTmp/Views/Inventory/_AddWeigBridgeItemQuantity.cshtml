@@ -1,0 +1,55 @@
+﻿@model ServicePortal.Models.WeighBridgeItemValue
+@{
+    ViewBag.Title = "NewInv";
+    Layout = null;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Items In Package
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("ItemValueSave", "Inventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+            <div class="col-md-12">
+
+                <div class="form-group has-success" id="lddiv">
+
+                    <label class="control-label" for="inputSuccess">Select Item</label>
+                    <br>
+
+                    @Html.DropDownListFor(m => m.ItemID, ViewBag.ItemsQnty as List<SelectListItem>, new { @class = "form-control", placeholder = "Items", required = "required", })
+
+                </div>
+
+                <div class="form-group has-success">
+
+                    <label class="control-label" for="inputSuccess">Quantity</label>
+                    <br>
+                    @Html.TextBoxFor(m => m.Quantity, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Quantity", required = "required" })
+
+                </div>
+
+            </div>
+            <br><br><br><br>
+            <div class="form-group has-success">
+
+                <button type="submit" class="btn btn-primary">Save</button>
+
+            </div>
+
+
+}
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

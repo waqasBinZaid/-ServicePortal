@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ServicePortal.Models.Organization>
+@{
+    ViewBag.Title = "ListOrgnanization";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+
+<div class="col-md-4 col-md-offset-4">
+
+    @Html.ActionLink("Add New ", "NewOrgnization", "Organization", new { @class = "btn btn-outline btn-primary btn-lg btn-block" })
+</div>
+<br>
+<br>
+<br>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      List Of Organization
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>WebSite</th>
+                        <th>Fax</th>
+                        <th>LandLine</th>
+                        <th>City/Country</th>
+                        <th>Docments</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+
+                            <td>@itm.OrganizaationName</td>
+
+                            <td>@itm.Address</td>
+                            <td>@itm.Call</td>
+                            <td>@itm.Url</td>
+
+                            <td>@itm.Call</td>
+                            <td>@itm.Lendline</td>
+                            <td>@itm.City/@itm.Country</td>
+
+                            <td>
+                                <a href="@Url.Action("DocList","Organization",new {id=itm.id })" class="btn btn-outline btn-primary" title="Add User">
+                                    DOCs
+                                </a>
+                            </td>
+                            <td>
+                                @* <a href="@Url.Action("Delete","Companies",new {id=itm.id })" class="btn btn-danger btn-circle" title="Delete">
+                            <i class="fa fa-times"></i>
+                        </a>*@
+
+                                <a href="@Url.Action("NewOrgnization","Organization",new {id=itm.id })" class="btn btn-primary btn-circle" title="Edit">
+                                    <i class="fa fa-list"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

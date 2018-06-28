@@ -1,0 +1,139 @@
+﻿@model ServicePortal.Models.Organization
+@{
+    ViewBag.Title = "NewOrgnization";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add New company
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <div class="form-inline">
+                @using (Html.BeginForm("OrgnizationSave", "Organization", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.id);
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+
+                        </div>
+                    }
+                    <div class="row col-lg-12">
+                        <div class="col-lg-4">
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Organizaation Name</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.OrganizaationName, null, new { @class = "form-control", id = "inputSuccess", placeholder = "OrganizaationName", required = "required" })
+                    </div>
+
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Address</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Address, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Address", required = "required" })
+                    </div>
+
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">City</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.City, null, new { @class = "form-control", id = "inputSuccess", placeholder = "City", required = "required" })
+
+                    </div>
+                    
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Province</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Province, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Province", required = "required" })
+
+                    </div>
+                            </div>
+
+                        <div class="col-lg-4">
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">ZipCoce</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.ZipCode, null, new { @class = "form-control", id = "inputSuccess", placeholder = "ZipCoce", required = "required", })
+                      
+                    </div>
+
+                    <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">Country</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Country, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Country", required = "required", })
+                              
+
+                            </div>
+                            
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Call</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Call, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", required = "required" })
+
+                            </div>
+
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Landline</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Lendline, null, new { @class = "form-control", id = "inputSuccess", placeholder = "LandLine", required = "required", type = "Number" })
+
+                            </div>
+                            </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group has-success">
+
+                                <label class="control-label" for="inputSuccess">Fax</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Fax, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Fax", required = "required" })
+                            </div>
+                           
+                    <div class="form-group has-success">
+
+                        <label class="control-label" for="inputSuccess">Email</label>
+                        <br>
+                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", id = "inputSuccess", placeholder = "LandLine", required = "required" ,type="Email"})
+
+                    </div>
+
+                            <div class="form-group has-success" >
+
+                                <label class="control-label" for="inputSuccess">WebSite</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Url, null, new { @class = "form-control", id = "inputSuccess", placeholder = "URL", required = "required" })
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group has-success">
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+
+
+
+                            </div>
+                            </div>
+                        </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

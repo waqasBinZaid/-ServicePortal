@@ -131,7 +131,7 @@
 
                             <div class="form-group has-success">
 
-                                <label class="control-label" for="inputSuccess">Pictuer</label>
+                                <label class="control-label" for="inputSuccess">Picture</label>
                                 <br>
                                 @Html.TextBoxFor(m => m.Image, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Phone", type = "file" })
                             </div>
@@ -366,7 +366,7 @@
 <!--End Modal for model Attribute Type -->
 <!--Modal for Data Against Model Type -->
 <div class="modal fade" id="modalvalag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -379,10 +379,14 @@
                     @Html.Action("AttributListForValue", "Inventory");
 
                 </div>
+
+                <div id="Subitemattribute">
+                    @Html.Action("SubItemAttributeList", "Inventory");
+                    </div>
+                </div>
+
+
             </div>
-
-
-        </div>
     </div>
 
 </div>
@@ -757,7 +761,7 @@
             var Cat = $("#Cat").val();
             var subcat = $("#CatID").val();
             var ModelID = $("#ModelID").val();
-            debugger
+           
             if (ModelID == null) {
                 alert("Please Select Model First")
             }
@@ -789,6 +793,31 @@
             return false
         });
 
+        $("#btnattributevalue").click(function () {
+            var Cat = $("#Cat").val();
+            var subcat = $("#CatID").val();
+            var ModelID = $("#ModelID").val();
+           
+                $.ajax({
+                    type: 'post',
+                    url: '/Inventory/SubItemAttributeData',
+                    data: {
+
+                        Cat: $("#Cat").val(),
+                        SubCat: $("#CatID").val(),
+                        ModelID: $("#ModelID").val()
+                    },
+
+                    success: function (response) {
+
+                        $('#Subitemattribute').html(response);
+                    }
+
+                });
+           
+           return false
+        });
+        
         $(function Disable() {
 
             var x = '@Session["UpdateSubcatName"]';

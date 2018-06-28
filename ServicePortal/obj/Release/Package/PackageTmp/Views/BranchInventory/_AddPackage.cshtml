@@ -1,0 +1,46 @@
+﻿@model ServicePortal.Models.PackageBranchStock
+
+<div class="table-responsive">
+
+    <div class="form-inline">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add Package In stock
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+
+                    <div class="form-inline">
+                        @using (Html.BeginForm("SavePackage", "BranchInventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(m => m.Id);
+                           
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Item</label>
+                                <br>
+                                @Html.DropDownListFor(m=>m.WeighBridgeID, ViewBag.packname as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", required = "required" })
+                            </div>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <label class="control-label" for="inputSuccess">Quantity</label>
+                                <br>
+                                @Html.TextBoxFor(m => m.Quantity, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Quantity", required = "required" })
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group has-success" style="width:300px">
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

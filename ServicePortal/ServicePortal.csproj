@@ -248,6 +248,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ServicePortal.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -474,6 +475,8 @@
     <Content Include="Views\Inventory\_CatSubCatCombination.cshtml" />
     <Content Include="Views\Inventory\_AccessoriesList.cshtml" />
     <Content Include="Views\InventoryDetails\_AccesoriesDetailList.cshtml" />
+    <Content Include="Views\Inventory\GroupByItemList.cshtml" />
+    <Content Include="Views\Inventory\_SubItemAttributeList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

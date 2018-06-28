@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8d5b469e2124245b27ee4ff9ac2500b" Name="Diagram1">
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Accesory" Width="1.5" PointX="8.25" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Branch" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.BranchStock" Width="1.5" PointX="5.25" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Brand" Width="1.5" PointX="3" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Category" Width="1.5" PointX="3" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Company" Width="1.5" PointX="0.75" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Country" Width="1.5" PointX="3" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Cutomer" Width="1.5" PointX="6" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Department" Width="1.5" PointX="3" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Designation" Width="1.5" PointX="3" PointY="56.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.GradeDA" Width="1.5" PointX="8.25" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Grade" Width="1.5" PointX="3" PointY="64.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.GradeTA" Width="1.5" PointX="8.25" PointY="61.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.inventryItem" Width="1.5" PointX="10.5" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Issue" Width="1.5" PointX="8.25" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.ItemAttribute" Width="1.5" PointX="12.75" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.ItemAttributeType" Width="1.5" PointX="9" PointY="65.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.ItemsCatSubCat" Width="1.5" PointX="11.25" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Manufactuere" Width="1.5" PointX="3" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Model" Width="1.5" PointX="5.25" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.OrganizationDoc" Width="1.5" PointX="7.5" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Organization" Width="1.5" PointX="5.25" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.PackageBranchStock" Width="1.5" PointX="5.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.PackageIssue" Width="1.5" PointX="11.25" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Receipt" Width="1.5" PointX="8.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.ReturnItem" Width="1.5" PointX="8.25" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.SubCategory" Width="1.5" PointX="8.25" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.Supplier" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.TempAccesory" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.TempItermAttribute" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.User" Width="1.5" PointX="5.25" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.WeighBridge" Width="1.5" PointX="9" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServicesPortalApiModel.WeighBridgeItemValue" Width="1.5" PointX="11.25" PointY="31.75" IsExpanded="true" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Accesories_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Accesories_Models" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Accesories_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Branches_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_BranchStocks_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Issue_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Issue_Branches1" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Issue_Branches2" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Organizations_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageBranchStock_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageIssue_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageIssue_Branches1" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Receipt_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ReturnItem_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ReturnItem_Branches1" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Users_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_WeighBridgeItemValues_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_BranchStocks_inventryItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Brands_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Catgory_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemsCatSubCat_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Models_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_SubCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Country_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Departments_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Designation_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_GradeDA_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Grades_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_GradeTA_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_inventryItem_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Manufactuere_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Models_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Organizations_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_SubCategory_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Users_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Issue_Cutomers" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageIssue_Cutomers" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ReturnItem_Cutomers" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Users_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Users_Designation" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_GradeDA_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_GradeTA_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Users_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_inventryItem_Manufactuere" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_inventryItem_Models" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_inventryItem_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Issue_inventryItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemAttribute_inventryItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Receipt_inventryItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ReturnItem_inventryItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_WeighBridgeItemValues_inventryItem1" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemAttribute_ItemAttributeType" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemAttribute_Models" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemsCatSubCat_ItemAttributeType" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_ItemsCatSubCat_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Models_Manufactuere" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Models_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_OrganizationDoc_Organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageBranchStock_WeighBridge" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_PackageIssue_WeighBridge" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_Receipt_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="ServicesPortalApiModel.FK_WeighBridgeItemValues_WeighBridge1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

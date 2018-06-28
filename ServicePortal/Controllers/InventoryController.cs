@@ -16,6 +16,7 @@ namespace ServicePortal.Controllers
     {
         ServicesPortalApiEntities db = new ServicesPortalApiEntities();
         // GET: Inventory
+        //private static int InventId = 0;
         public string RoundOff(string data)
         {
             string OldString = data;
@@ -45,14 +46,14 @@ namespace ServicePortal.Controllers
 
         public ActionResult NewInv(int id = 0)
         {
-            for(int i=1; i<100; i++)
+            for (int i = 1; i < 100; i++)
             {
-                Session["AccessoryNullOrNot"+i] = "";
+                Session["AccessoryNullOrNot" + i] = "";
             }
-            
+
 
             ViewBag.Cat = DropDownHandler.Category();
-           // ViewBag.Model = DropDownHandler.Model();
+            // ViewBag.Model = DropDownHandler.Model();
             ViewBag.ItemAttribute = DropDownHandler.ItemAttribute();
             ViewBag.Manfacturer = DropDownHandler.Manfacturer();
             ViewBag.AccesoriesItems = DropDownHandler.Item();
@@ -284,7 +285,7 @@ namespace ServicePortal.Controllers
                 return RedirectToAction("NewInv");
             }
         }
-       
+
         public ActionResult CountrySave(Country cnt)
         {
             if (cnt.Country1 == null)
@@ -307,7 +308,7 @@ namespace ServicePortal.Controllers
         public ActionResult ModelSave(Model md)
         {
             string mod = RoundOff(md.Models);
-            var dta = db.Models.Where(m => m.Models == mod & m.M_CatId ==md.M_CatId & m.M_SubCatId ==md.M_SubCatId & m.M_ManFacID == md.M_ManFacID).ToList();
+            var dta = db.Models.Where(m => m.Models == mod & m.M_CatId == md.M_CatId & m.M_SubCatId == md.M_SubCatId & m.M_ManFacID == md.M_ManFacID).ToList();
             if (dta.Count != 0)
             {
                 return Content("alrdyct");
@@ -348,15 +349,15 @@ namespace ServicePortal.Controllers
             //}
             //else
             //{
-                db.Accesories.Add(acc);
-                db.SaveChanges();
-                return Content("save");
+            db.Accesories.Add(acc);
+            db.SaveChanges();
+            return Content("save");
 
-           // }
+            // }
 
-           
+
         }
-        public ActionResult AccessoryList(int CatID , int SubCatID , int ModelId)
+        public ActionResult AccessoryList(int CatID, int SubCatID, int ModelId)
         {
             Session["ctid"] = CatID;
             Session["sbctid"] = SubCatID;
@@ -366,19 +367,19 @@ namespace ServicePortal.Controllers
         }
         public ActionResult AccessoryListReturn()
         {
-          int  Catid = Convert.ToInt32(Session["ctid"]);
+            int Catid = Convert.ToInt32(Session["ctid"]);
             int subcatid = Convert.ToInt32(Session["sbctid"]);
             int ModelID = Convert.ToInt32(Session["mdid"]);
             var data = db.Accesories.Where(m => m.CatID == Catid & m.SubCatID == subcatid & m.ModelID == ModelID).ToList();
             int c = 1;
-            foreach(var itm in data)
+            foreach (var itm in data)
             {
-                Session["AccessoryNullOrNot"+c] = itm.AccessoryID;
+                Session["AccessoryNullOrNot" + c] = itm.AccessoryID;
                 c++;
             }
-            
-            
-            return PartialView("~/Views/Inventory/_AccessoriesList.cshtml",data);
+
+
+            return PartialView("~/Views/Inventory/_AccessoriesList.cshtml", data);
         }
         public ActionResult AccessoriesDelete(int id = 0)
         {
@@ -487,7 +488,19 @@ namespace ServicePortal.Controllers
             Session["UpdatCatName"] = "";
             Session["updateModel"] = "";
 
-            return View(db.inventryItems.ToList());
+            // var data = db.inventryItems.GroupBy(m => m.ModelID).ToList();
+            //var result = from inventry in db.inventryItems group inventry by inventry.ModelID into invent select invent;
+
+            var data = db.inventryItems.GroupBy(m => new { m.SubCategory.CatId, m.CatID, m.ModelID }).Select(grp => grp.FirstOrDefault()).ToList();
+            
+            return View(data);
+        }
+    public ActionResult GroupByItemList(int id=0)
+        {
+            var data = db.inventryItems.Where(m => m.id == id).FirstOrDefault();
+            var Items = db.inventryItems.Where(m => m.SubCategory.CatId == data.SubCategory.CatId & m.CatID == data.CatID & m.ModelID == data.ModelID).ToList();
+
+            return View(Items);
         }
         public ActionResult ItemAttribute()
         {
@@ -513,7 +526,24 @@ namespace ServicePortal.Controllers
         //    }
         //    return RedirectToAction("DetailsInventory", "InventoryDetails");
         //}
+        public ActionResult SubItemAttributeData(int Cat = 0, int SubCat = 0, int ModelID = 0)
+        {
+            Session["sbitmcat"] = Cat;
+            Session["sbitmsubcat"] = SubCat;
+            Session["sbitmmodel"] = ModelID;
+            return RedirectToAction("SubItemAttributeList");
 
+        }
+        public ActionResult SubItemAttributeList()
+        {
+           int Cat = Convert.ToInt32(Session["sbitmcat"]);
+            int SubCat = Convert.ToInt32(Session["sbitmsubcat"]);
+            int ModelID = Convert.ToInt32(Session["sbitmmodel"]);
+            var AttributeName = db.ItemsCatSubCats.Where(m => m.CatID == Cat & m.SubCatID == SubCat).ToList();
+            Session["AttributeListCount"] = AttributeName.Count();
+            var data = db.ItemAttributes.Where(m => m.CatID == Cat & m.SubCatID == SubCat & m.ModelID == ModelID).ToList();
+            return View("~/Views/Inventory/_SubItemAttributeList.cshtml", data);
+        }
         public ActionResult SaveItemAttribute(ItemAttributeType atp)
         {
             string att = RoundOff(atp.ItemAttribute);

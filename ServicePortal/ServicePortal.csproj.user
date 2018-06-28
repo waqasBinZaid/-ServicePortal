@@ -19,6 +19,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <ActiveDebugTarget />
+    <NameOfLastUsedPublishProfile>ServicePortal</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

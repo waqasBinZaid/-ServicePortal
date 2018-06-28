@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<ServicePortal.Models.Accesory>
+@{
+    ViewBag.Title = "Accessories";
+    Layout = null;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        List Of Accessories
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Description</th>
+                        <th>Accessories</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   
+
+                    @foreach (var itm in Model)
+                    {
+                    <tr>
+
+
+                        <td style="width:500px">@itm.Description</td>
+
+                        @if (itm.AccessoryID == null)
+    {
+                        <td>This product is not part of our stock</td>
+}
+else
+{
+                    <td>@itm.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</td>
+}
+
+                        <td>
+
+                            <a href="@Url.Action("AccessoriesDelete","Inventory",new {id = itm.Id})" class="btn btn-danger btn-circle" title="Edit" id="edtitm">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+
+                      
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

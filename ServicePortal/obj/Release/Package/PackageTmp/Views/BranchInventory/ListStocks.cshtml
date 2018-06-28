@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ServicePortal.Models.BranchStock>
+@{
+    ViewBag.Title = "ListStocks";
+    Layout = "~/Views/Shared/BranchMaster.cshtml";
+}
+<div class="row col-md-12">
+    <div class="col-md-3">
+        @Html.Action("NewPackage", "BranchInventory")
+    </div>
+    @*<div class="col-md-6">
+        @Html.Action("AddStocks", "BranchInventory")
+    </div>*@
+    <div class=" col-md-9">
+        @Html.Action("PackageList", "BranchInventory")
+    </div>
+
+</div>
+<br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+                                    <div class="row  col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                List Of Stock
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ItemName</th>
+                                                                <th>Total</th>
+                                                                <th>Action</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            @foreach (var itm in Model)
+                        {
+                                    <tr>
+
+                                        <td>@itm.inventryItem.SubCategory.Category.Catgory/@itm.inventryItem.SubCategory.SubCat/@itm.inventryItem.Model.Models</td>
+
+                                        <td>
+                                            @itm.Quantity
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("AddStocks","BranchInventory",new {id=itm.Id})" class="btn btn-outline btn-primary" title="Update">
+
+                                                Update
+                                            </a>
+                                            <a href="@Url.Action("ItemID","BranchInventory",new {id=itm.ItemID})" class="btn btn-outline btn-primary" title="Issue">
+                                                Issue
+                                            </a>
+                                            <a href="@Url.Action("ReturnItemID","BranchInventory",new {id=itm.ItemID})" class="btn btn-outline btn-primary" title="Return">
+                                                Return
+                                            </a>
+                                            <a href="#" class="btn btn-outline btn-primary" title="Issue">
+                                                Trnasfer
+                                            </a>
+                                            <a href="#" class="btn btn-outline btn-primary" title="Issue">
+                                                Scrap
+                                            </a>
+                                        </td>
+                                    </tr>
+
+}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>

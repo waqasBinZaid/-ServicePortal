@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ServicePortal.Models.BranchStock>
+
+@{
+    ViewBag.Title = "Accessories";
+    Layout = null;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Items Filter By Branch
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Branch Name</th>
+                        <th>Quantity</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+
+                            <td>@itm.Branch.BranchName</td>
+                            <td>@itm.Quantity</td>
+
+                        </tr>
+
+                    }
+
+                    @*<tr>
+
+                            <td>Naveed</td>
+                            <td>2</td>
+
+                        </tr>*@
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

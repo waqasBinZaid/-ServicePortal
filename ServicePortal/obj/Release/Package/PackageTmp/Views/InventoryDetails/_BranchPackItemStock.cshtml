@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Accessories";
+    Layout = null;
+}
+
+@model IEnumerable<ServicePortal.Models.WeighBridgeItemValue>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Items Filter By Branch From Package
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Branch Name</th>
+                        <th>Quantity</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+
+                            <td>@itm.Branch.BranchName</td>
+                            <td>@itm.Quantity</td>
+
+                        </tr>
+
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
