@@ -14,6 +14,7 @@ namespace ServicePortal.Controllers
     [IsLogin]
     public class InventoryController : Controller
     {
+        public static bool status;
         ServicesPortalApiEntities db = new ServicesPortalApiEntities();
         // GET: Inventory
         //private static int InventId = 0;
@@ -28,7 +29,6 @@ namespace ServicePortal.Controllers
         {
             return View();
         }
-
         public JsonResult SubjectByClassJs(int id)
         {
 
@@ -82,6 +82,130 @@ namespace ServicePortal.Controllers
                 return View();
             }
         }
+        public ActionResult Save(inventryItem I)
+        {
+            if (I.id > 0)
+            {
+                InventoryHandler.UpdateItem(I.id, I);
+                db.SaveChanges();
+                return RedirectToAction("List");
+
+            }
+            else
+            {
+
+
+                int itemID;
+                var listt = db.inventryItems.ToList();
+                if (listt.Count != 0)
+                {
+                    var lastrecord = listt.Last();
+                    itemID = lastrecord.id + 1;
+
+                }
+                else
+                {
+                    itemID = 1;
+                }
+
+                var catid = db.SubCategories.Where(m => m.id == I.CatID).FirstOrDefault();
+                int CateGoryID = catid.CatId;
+
+
+                var TempItemAttributes = db.TempItermAttributes.Where(m => m.CatID == CateGoryID & m.SubCatID == I.CatID & m.ModelID == I.ModelID).ToList();
+
+                var ItemAttributes = db.ItemAttributes.Where(m => m.CatID == CateGoryID & m.SubCatID == I.CatID & m.ModelID == I.ModelID).ToList();
+               
+
+                foreach (var data in TempItemAttributes)
+                {
+                    status= ItemAttributes.Any(m => m.AttributeValue == data.AttributeValue);
+                   if(status == false)
+                    {
+                        status = false;
+                        break;
+                    }
+
+                }
+
+                if (status != true)
+                {
+
+                    Session["itmfid"] = itemID;
+                    string path = null;
+                    if (Request.Files != null && Request.Files.Count > 0)
+                    {
+
+                        foreach (string f in Request.Files)
+                        {
+                            HttpPostedFileBase file = Request.Files[f];
+                            if (file.FileName == "")
+                            {
+                                path = "/Files/user.jpg";
+                            }
+                            else
+                            {
+                                string webpath = "/Files/" + DateTime.Now.Ticks + file.FileName.Substring(file.FileName.LastIndexOf("."));
+                                file.SaveAs(Request.MapPath(webpath)); //physical path is required to save a file
+                                path = webpath;
+                            }
+                        }
+                    }
+
+                    I.Image = path;
+                    I.id = itemID;
+                    I.CompanyId = Convert.ToInt32(Session["Cid"]);
+                    I.CreatedBy = Session["HAname"].ToString();
+                    I.CreatedOn = DateTime.Now;
+                    db.inventryItems.Add(I);
+                    db.SaveChanges();
+
+                    return RedirectToAction("TemDataMove");
+                }
+                else
+                {
+                    TempData["itemalready"] = "Item Is already exist";
+                    return RedirectToAction("NewInv");
+                }
+
+               
+            }
+        }
+        public ActionResult TemDataMove()
+        {
+            int itemID = Convert.ToInt32(Session["itmfid"]);
+            var data = db.TempItermAttributes.Where(m => m.ItemID == itemID).ToList();
+            if (data != null)
+            {
+                foreach (var itm in data)
+                {
+                    ItemAttribute sb = new ItemAttribute
+                    {
+
+                        CatID = itm.CatID,
+                        SubCatID = itm.SubCatID,
+                        ModelID = itm.ModelID,
+                        ItemID = itm.ItemID,
+                        AttTypeID = itm.AttTypeID,
+                        AttributeValue = itm.AttributeValue
+
+                    };
+                    db.ItemAttributes.Add(sb);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("List");
+
+        }
+        public ActionResult CatLoad() {
+            
+            return Json(DropDownHandler.Category(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ManufacturerLoad()
+        {
+
+            return Json(DropDownHandler.Manfacturer(), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult CatSubCatSave(ItemsCatSubCat itcat)
         {
             int itemID;
@@ -109,6 +233,14 @@ namespace ServicePortal.Controllers
                 db.SaveChanges();
                 return Content("success");
             }
+        }
+        [HttpPost]
+        public ActionResult DelteAttributeAgainstCatSubCat(int ID)
+        {
+            var data = db.ItemsCatSubCats.Where(m => m.Id == ID).FirstOrDefault();
+            db.ItemsCatSubCats.Remove(data);
+            db.SaveChanges();
+            return Content("");
         }
         public ActionResult catsubcat(int CatID = 0, int SubCatID = 0)
         {
@@ -174,6 +306,29 @@ namespace ServicePortal.Controllers
             {
                 ItemID = 1;
             }
+
+            int CateGoryID = Convert.ToInt32(Session["CatID"]);
+            int TSubCatID = Convert.ToInt32(Session["SubCat"]);
+            int TModelID = Convert.ToInt32(Session["ModelID"]);
+
+            //var TempItemAttributes = db.TempItermAttributes.Where(m => m.CatID == CateGoryID & m.SubCatID == TSubCatID & m.ModelID == TModelID).ToList();
+
+            var ItemAttributes = db.ItemAttributes.Where(m => m.CatID == CateGoryID & m.SubCatID == TSubCatID & m.ModelID == TModelID).ToList();
+
+
+            foreach (var items in itat)
+            {
+                status = ItemAttributes.Any(m => m.AttributeValue == items.AttributeValue);
+                if (status == false)
+                {
+                    status = false;
+                    break;
+                }
+
+            }
+
+            if(status != true) { 
+
             var data = db.TempItermAttributes.ToList();
 
             if (data != null)
@@ -204,6 +359,11 @@ namespace ServicePortal.Controllers
             }
 
             return Content("res");
+            }
+            else
+            {
+                return Content("exist");
+            }
         }
         public ActionResult SubCatSave(SubCategory sb)
         {
@@ -381,106 +541,16 @@ namespace ServicePortal.Controllers
 
             return PartialView("~/Views/Inventory/_AccessoriesList.cshtml", data);
         }
-        public ActionResult AccessoriesDelete(int id = 0)
+        public ActionResult AccessoriesDelete(int ID = 0)
         {
-            var data = db.Accesories.Where(m => m.Id == id).FirstOrDefault();
+            var data = db.Accesories.Where(m => m.Id == ID).FirstOrDefault();
             db.Accesories.Remove(data);
             db.SaveChanges();
-            return RedirectToAction("NewInv");
+            return Content("");
         }
-        public ActionResult Save(inventryItem I)
-        {
-            if (I.id > 0)
-            {
-                InventoryHandler.UpdateItem(I.id, I);
-                db.SaveChanges();
-                return RedirectToAction("List");
+      
 
-            }
-            else
-            {
-
-
-                int itemID;
-                var listt = db.inventryItems.ToList();
-                if (listt.Count != 0)
-                {
-                    var lastrecord = listt.Last();
-                    itemID = lastrecord.id + 1;
-
-                }
-                else
-                {
-                    itemID = 1;
-                }
-                //var dt = db.inventryItems.Where(m => m.CatID == I.CatID & m.ModelID == I.ModelID & m.BrandID == I.BrandID).FirstOrDefault();
-                //if(dt != null)
-                //{
-                Session["itmfid"] = itemID;
-                string path = null;
-                if (Request.Files != null && Request.Files.Count > 0)
-                {
-
-                    foreach (string f in Request.Files)
-                    {
-                        HttpPostedFileBase file = Request.Files[f];
-                        if (file.FileName == "")
-                        {
-                            path = "/Files/user.jpg";
-                        }
-                        else
-                        {
-                            string webpath = "/Files/" + DateTime.Now.Ticks + file.FileName.Substring(file.FileName.LastIndexOf("."));
-                            file.SaveAs(Request.MapPath(webpath)); //physical path is required to save a file
-                            path = webpath;
-                        }
-                    }
-                }
-
-                I.Image = path;
-                I.id = itemID;
-                I.CompanyId = Convert.ToInt32(Session["Cid"]);
-                I.CreatedBy = Session["HAname"].ToString();
-                I.CreatedOn = DateTime.Now;
-                db.inventryItems.Add(I);
-                db.SaveChanges();
-
-                return RedirectToAction("TemDataMove");
-                //}
-                //    else
-                ////    {
-                //        TempData["itemalready"] = "Item Is Already Exist";
-                //        return RedirectToAction("NewInv");}
-
-            }
-        }
-
-        public ActionResult TemDataMove()
-        {
-            int itemID = Convert.ToInt32(Session["itmfid"]);
-            var data = db.TempItermAttributes.Where(m => m.ItemID == itemID).ToList();
-            if (data != null)
-            {
-                foreach (var itm in data)
-                {
-                    ItemAttribute sb = new ItemAttribute
-                    {
-
-                        CatID = itm.CatID,
-                        SubCatID = itm.SubCatID,
-                        ModelID = itm.ModelID,
-                        ItemID = itm.ItemID,
-                        AttTypeID = itm.AttTypeID,
-                        AttributeValue = itm.AttributeValue
-
-                    };
-                    db.ItemAttributes.Add(sb);
-                    db.SaveChanges();
-                }
-            }
-            return RedirectToAction("List");
-
-        }
+       
 
         public ActionResult List()
         {

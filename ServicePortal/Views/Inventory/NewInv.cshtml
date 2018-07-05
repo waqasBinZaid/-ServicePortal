@@ -42,7 +42,7 @@
                                     <label class="control-label" for="inputSuccess">Category</label>
                                     <br>
 
-                                    @Html.DropDownList("Cat", ViewBag.Cat as List<SelectListItem>, new { @class = "form-control", placeholder = "Category"})
+                                    @Html.DropDownList("Cat", ViewBag.Cat as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", required = "required" })
                                     @Html.TextBox("nbb", Category, new { @class = "form-control", id = "cattxt" })
                                     <a href="#" class="form-control" id="btncat2" data-target="#myModal2" data-toggle="modal">+</a>
 
@@ -52,7 +52,7 @@
 
                                     <label class="control-label" for="inputSuccess">Sub Category</label>
                                     <br>
-                                    @Html.DropDownListFor(m => m.CatID, new SelectList(""), "Select SubCatgory", new { @class = "form-control", id = "CatID" })
+                                    @Html.DropDownListFor(m => m.CatID, new SelectList(""), "Select SubCatgory", new { @class = "form-control", id = "CatID" , required = "required" })
                                     <a href="#" class="form-control" id="newcat" data-target="#myModal" data-toggle="modal">+</a>
                                     <input type="button" class="btn btn-default" value="view Attribute" id="btnaddattribute">
                                 </div>
@@ -68,12 +68,12 @@
 
                                     <label class="control-label" for="inputSuccess">Manfacturer</label>
                                     <br>
-                                    @Html.DropDownListFor(m => m.ManFaceID, ViewBag.Manfacturer as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", id = "manfac"})
+                                    @Html.DropDownListFor(m => m.ManFaceID, ViewBag.Manfacturer as List<SelectListItem>, new { @class = "form-control", placeholder = "Category", id = "manfac", required = "required" })
                                     <a href="#" class="form-control" id="newman" data-target="#manmodal" data-toggle="modal">+</a>
 
                                 </div>
 
-
+                                
                                 <div class="form-group has-success">
 
                                     <label class="control-label" for="inputSuccess">Models</label>
@@ -104,13 +104,13 @@
 
                                 <label class="control-label" for="inputSuccess">Avg.Sale Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.AvgSalePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.Sale Price", type = "Text", required = "required" })
+                                @Html.TextBoxFor(m => m.AvgSalePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.Sale Price", type = "Text" })
                             </div>
                             <div class="form-group has-success">
 
                                 <label class="control-label" for="inputSuccess">Avg.Purchase Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.AvgPurchasePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.PurchasePrice", required = "required" })
+                                @Html.TextBoxFor(m => m.AvgPurchasePrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Avg.PurchasePrice" })
 
                             </div>
 
@@ -118,14 +118,14 @@
 
                                 <label class="control-label" for="inputSuccess">Bottom Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.BottemPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "BottomPrice", required = "required" })
+                                @Html.TextBoxFor(m => m.BottemPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "BottomPrice"})
 
                             </div>
                             <div class="form-group has-success">
 
                                 <label class="control-label" for="inputSuccess">Internal Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.InternalPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Internal Price", type = "Text", required = "required" })
+                                @Html.TextBoxFor(m => m.InternalPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Internal Price", type = "Text"})
 
                             </div>
 
@@ -142,28 +142,28 @@
 
                                 <label class="control-label" for="inputSuccess">Trade Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.TradesPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Trader Price", type = "Text", required = "required" })
+                                @Html.TextBoxFor(m => m.TradesPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Trader Price", type = "Text", })
                             </div>
 
                             <div class="form-group has-success">
  
                                 <label class="control-label" for="inputSuccess">Quoted Price</label>
                                 <br>
-                                @Html.TextBoxFor(m => m.QoutedPrice, null, new { @class = "form-control", id = "qtpr", placeholder = "Quoted Price", type = "Text", required = "required" })
+                                @Html.TextBoxFor(m => m.QoutedPrice, null, new { @class = "form-control", id = "qtpr", placeholder = "Quoted Price", type = "Text" })
                             </div>
 
                             <div class="form-group has-success">
 
                                 <label class="control-label" for="inputSuccess">Sales Description</label>
                                 <br>
-                                @Html.TextAreaFor(m => m.SalesDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", required = "required", @row = "10" })
+                                @Html.TextAreaFor(m => m.SalesDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", @row = "10" })
                             </div>
 
                             <div class="form-group has-success">
 
                                 <label class="control-label" for="inputSuccess">Purchase Description</label>
                                 <br>
-                                @Html.TextAreaFor(m => m.PurchaseDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", required = "required", @row = "10" })
+                                @Html.TextAreaFor(m => m.PurchaseDescription, new { @class = "form-control", id = "inputSuccess", placeholde = "Description", @row = "10" })
                             </div>
                         </div>
 
@@ -303,7 +303,7 @@
 <!--End  Modal for Model -->
 <!-- Modal for Items Cat Sub Cat -->
 <div class="modal fade" id="modeltest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -318,15 +318,42 @@
                         @Html.DropDownList("AttTypeID", ViewBag.ItemAttribute as List<SelectListItem>, new { @class = "form-control", required = "required" })
                         <a href="#" class="form-control" data-target="#attrival" data-toggle="modal">+</a>
                     </div>
-                    <input type="button" class="btn btn-default" id="catsubcat" value="Submit" />
 
-                    <br> <hr>
-                    <div id="list">
-                        @Html.Action("buteList", "Inventory");
+                    <div class="form-group">
+                        <label> Select Attribute Type  </label><br>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" class="radio-inline" value="Text" name="AttributeType" checked>Text
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" class="radio-inline" value="Number" name="AttributeType">Numbers
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" class="radio-inline" value="Date" name="AttributeType">Date
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" class="radio-inline" value="TextNumber" name="AttributeType">Text / Numbers
+                                </label>
+                            </div>
 
-                    </div>
 
-                </form>
+                        </div>
+
+                        <input type="button" class="btn btn-default" id="catsubcat" value="Submit" />
+
+                        <br> <hr>
+                        <div id="list">
+                            @Html.Action("buteList", "Inventory");
+
+                        </div>
+
+</form>
             </div>
 
 
@@ -438,7 +465,7 @@
 
 <script>
     $(document).ready(function () {
-
+    
         $("#btnsub").click(function () {
             CatId = $("#Cat").val();
             SubCat = $("#valueSubCat").val();
@@ -457,15 +484,27 @@
                     }
                     else {
                         alert("Data Save Succesfully");
+
+                        $.get("/Inventory/SubjectByClassJs", { id: $("#Cat").val() }, function (data) {
+
+                            $("#CatID").empty();
+                            $.each(data, function (index, row) {
+                                $("#CatID").append(
+                                    "<option value='" + row.id + "'>" + row.SubCat + "</option> "
+                                )
+
+                            });
+                        });
+                        
                     }
 
                 }
 
             });
-
+            return false
         });
         $("#btncat").click(function () {
-
+            debugger
             $.ajax({
                 type: 'post',
                 url: '/Inventory/CatSave',
@@ -473,19 +512,37 @@
 
                 success: function (response) {
                     if (response == "alrdyct") {
-
+                       
                         alert("Category Already Exist");
                     }
                     else {
-                    alert("Data Save Succesfully");
-                        //window.location.reload(true);
-                        //console.log(response);
-                        //JQuery("#Cat").html(response);
+
+                        alert("Data Save Succesfully");
+                        
+                        $.ajax({
+
+                            url: '/Inventory/CatLoad',
+                            
+                            success: function (aa) {
+                                debugger
+                                console.log(aa);
+
+                                $("#Cat").empty();
+                                $.each(aa, function () {
+                                    $("#Cat").append(
+                                        "<option value='" + this.Value + "'>" + this.Text + "</option> "
+                                    )
+                                });
+
+
+                            }
+
+                        });
                     }
                 }
-
+   
             });
-
+            return false;
         });
         $("#btnman").click(function () {
 
@@ -501,13 +558,31 @@
                     }
                     else {
                         alert("Data Save Succesfully");
-                        window.location.reload(true);
+                        $.ajax({
+
+                            url: '/Inventory/ManufacturerLoad',
+
+                            success: function (aa) {
+                                debugger
+                                console.log(aa);
+
+                                $("#manfac").empty();
+                                $.each(aa, function () {
+                                    $("#manfac").append(
+                                        "<option value='" + this.Value + "'>" + this.Text + "</option> "
+                                    )
+                                });
+
+
+                            }
+
+                        });
                     }
 
                 }
 
             });
-
+            return false
         });
         $("#btnmd").click(function () {
             var Models = $("#modelname").val();
@@ -535,7 +610,23 @@
                         }
                         else {
                             alert("Data Save Succesfully");
-                            location.reload(true);
+
+                            $.get("/Inventory/ModalDropDown", {
+                                CatId: $("#Cat").val(),
+                                SubCatId: $("#CatID").val(),
+                                ManfacId: $("#manfac").val()
+                            },
+                                function (data) {
+
+                                    $("#ModelID").empty();
+                                    $.each(data, function (index, row) {
+                                        $("#ModelID").append(
+                                            "<option value='" + row.id + "'>" + row.Models + "</option> "
+                                        )
+
+                                    });
+                                });
+
                         }
                     }
 
@@ -564,9 +655,6 @@
                 });
             });
             return false
-
-
-
                     $.ajax({
                         type: 'post',
                         url: '/Inventory/ModleDropDown',
@@ -579,8 +667,6 @@
                         }
 
                     });
-
-
         });
 
         $("#Cat").change(function () {
@@ -605,6 +691,8 @@
         });
 
         $("#catsubcat").click(function () {
+            var radioValue = $("input[name='AttributeType']:checked").val();
+            debugger
 
             $.ajax({
 
@@ -614,7 +702,8 @@
 
                     CatID: $("#Cat").val(),
                     SubCatID: $("#CatID").val(),
-                    AttTypeID: $("#AttTypeID").val()
+                    AttTypeID: $("#AttTypeID").val(),
+                    AttributeType: radioValue
                 },
 
                 success: function (response) {
@@ -854,6 +943,7 @@
 
         });
 
+
         $(function DropdownDisable() {
 
             var x = '@Session["edithide"]';
@@ -872,7 +962,9 @@
             }
 
 
+
         });
+
 
     });
 </script>

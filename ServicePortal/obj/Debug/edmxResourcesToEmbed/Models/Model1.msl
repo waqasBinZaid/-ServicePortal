@@ -286,6 +286,7 @@
           <ScalarProperty Name="SubCatID" ColumnName="SubCatID" />
           <ScalarProperty Name="AttTypeID" ColumnName="AttTypeID" />
           <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="AttributeType" ColumnName="AttributeType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

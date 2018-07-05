@@ -269,6 +269,7 @@
     <Property Name="SubCatID" Type="int" Nullable="false" />
     <Property Name="AttTypeID" Type="int" Nullable="false" />
     <Property Name="ItemID" Type="int" />
+    <Property Name="AttributeType" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Manufactuere">
     <Key>

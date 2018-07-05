@@ -26,7 +26,7 @@
 
                     @foreach (var itm in Model)
                     {
-                    <tr>
+                    <tr id="row2_@itm.Id">
 
 
                         <td style="width:500px">@itm.Description</td>
@@ -40,13 +40,10 @@ else
                     <td>@itm.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</td>
 }
 
-                        <td>
+                    <td>
+                        <a href="#" class="btn btn-outline btn-primary oo" onclick="Dellaccessories(@itm.Id);" title="delete"><i class="fa fa-trash-o"></i></a>
 
-                            <a href="@Url.Action("AccessoriesDelete","Inventory",new {id = itm.Id})" class="btn btn-danger btn-circle" title="Edit" id="edtitm">
-                                <i class="fa fa-trash-o"></i>
-                            </a>
-
-                        </td>
+                    </td>
                     </tr>
 
                       
@@ -57,3 +54,65 @@ else
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="ConfirmAccesoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>*@
+                <h4 class="modal-title" id="myModalLabel">Add New Manfacturer</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <p>Are you sure you want to delete Accesory ?</p>
+                <hr>
+                <input type="submit" class="btn btn-danger btn-outline" id="ConfiraccesorymDell" value="Confirm">
+                <input type="button" class="btn btn-success btn-outline" id="CanceaccesorylDell" value="Cancel">
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<script>
+
+    var Dellaccessories = function (Id) {
+        var x = Id;
+        debugger
+        $("#ConfirmAccesoryModal").modal("show");
+        $("#ConfiraccesorymDell").click(function () {
+            $.ajax({
+                type: 'post',
+                url: '/Inventory/AccessoriesDelete',
+                data: {
+
+                    ID: x
+                },
+
+                success: function (response) {
+                    $("#ConfirmAccesoryModal").modal("hide");
+                    $("#row2_" + Id).remove();
+                }
+
+            });
+            return false
+        });
+        $("#CanceaccesorylDell").click(function () {
+            $("#ConfirmAccesoryModal").modal("hide");
+
+        });
+
+
+    }
+
+    //$('.gg').click(function () {
+    //    var a = 10;
+    //    debugger
+
+    //});
+
+</script>

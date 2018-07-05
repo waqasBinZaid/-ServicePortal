@@ -36,17 +36,32 @@
                 <td>@itm.ItemAttributeType.ItemAttribute<input type="hidden" class="form-control" name="[@c].AttTypeID" value="@itm.AttTypeID" required="required"></td>
                 <td>
                     <div class="form-group">
+                        @if(itm.AttributeType == "Text") { 
+                        <input type="text" class="form-control nn" name="[@c].AttributeValue" placeholder="Enter only Text Value" required="required" value="@TempData["value"+c]">
+                        }
+                        else if(itm.AttributeType == "Number")
+                        {
+                            <input type="number" class="form-control" name="[@c].AttributeValue" placeholder="Enter Numeric Value only" required="required" value="@TempData["value"+c]">
+                       
+                        }
+                         else if(itm.AttributeType == "Date")
+                        {
+                            <input type="date" class="form-control" name="[@c].AttributeValue" placeholder="Enter Value" required="required" value="@TempData["value"+c]">
 
-                        <input type="text" class="form-control" name="[@c].AttributeValue" placeholder="Enter Value" required="required" value="@TempData["value"+c]">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" name="[@c].AttributeValue" placeholder="Enter Value" required="required" value="@TempData["value"+c]">
 
+                        }
                     </div>
                 </td>
 
             </tr>
 
-c++;
+                        c++;
 
-}
+                    }
 
                 </tbody>
 
@@ -64,7 +79,14 @@ c++;
 
 <script>
     $(document).ready(function () {
-        
+
+        $('.nn').bind('keyup blur', function () {
+            debugger
+            var node = $(this);
+            node.val(node.val().replace(/[^a-z ]/g, ''));
+        }
+        );
+
         $("#btnmval").click(function () {
 
             $.ajax({
@@ -73,8 +95,14 @@ c++;
                 data: $('#valagmodalform').serialize(),
 
                 success: function (response) {
-                    alert("Data Save Succesfully");
-                    $("#modalvalag").modal("hide");
+                    if (response == "res") {
+                        alert("Data Save Succesfully");
+                        $("#modalvalag").modal("hide");
+                    }
+                    else {
+                        alert(" Attributes Already Exist Check it again");
+                    }
+                    
                 }
 
             });

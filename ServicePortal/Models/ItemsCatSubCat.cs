@@ -19,6 +19,7 @@ namespace ServicePortal.Models
         public int SubCatID { get; set; }
         public int AttTypeID { get; set; }
         public Nullable<int> ItemID { get; set; }
+        public string AttributeType { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual ItemAttributeType ItemAttributeType { get; set; }

@@ -345,6 +345,7 @@
     <Property Name="SubCatID" Type="Int32" Nullable="false" />
     <Property Name="AttTypeID" Type="Int32" Nullable="false" />
     <Property Name="ItemID" Type="Int32" />
+    <Property Name="AttributeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_ItemsCatSubCat_Category" FromRole="ItemsCatSubCat" ToRole="Category" />
     <NavigationProperty Name="ItemAttributeType" Relationship="Self.FK_ItemsCatSubCat_ItemAttributeType" FromRole="ItemsCatSubCat" ToRole="ItemAttributeType" />
     <NavigationProperty Name="SubCategory" Relationship="Self.FK_ItemsCatSubCat_SubCategory" FromRole="ItemsCatSubCat" ToRole="SubCategory" />
