@@ -19,72 +19,71 @@
 
                     <div class="form-inline">
                         @*@using (Html.BeginForm("PurchaseSave", "Inventory", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {*@
+                            {*@
                         <form method="post" enctype="multipart/form-data" id="purformdata">
 
-                    @*<form method="post" enctype = "multipart/form-data" id="purformdata">*@
+                            @*<form method="post" enctype = "multipart/form-data" id="purformdata">*@
 
 
-                    <div class="col-md-4">
+                            <div class="col-md-4">
 
 
-                        <div class="form-group has-success">
+                                <div class="form-group has-success">
 
-                            <label class="control-label" for="inputSuccess">Select Item</label>
+                                    <label class="control-label" for="inputSuccess">Select Item</label>
+                                    <br>
+                                    @Html.DropDownListFor(m => m.ItemID, ViewBag.ItemsPurchase as List<SelectListItem>, new { @class = "form-control", id = "OrderITem", required = "required" })
+                                    <a href="#" class="btn btn-outline btn-danger btn-block" id="btnItemDetail" >View Item Detail</a>
+                                    
+                                </div>
+                                <div class="form-group has-success">
+
+                                    <label class="control-label" for="inputSuccess">Select Suplier</label>
+                                    <br>
+                                    @Html.DropDownListFor(m => m.SuplierID, ViewBag.Pursuplier as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", required = "required" })
+                                    <a href="#" class="form-control" id="cat" data-target="#suplier" data-toggle="modal">+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+
+                                <div class="form-group has-success">
+
+                                    <label class="control-label" for="inputSuccess">Quantity</label>
+                                    <br>
+                                    @Html.TextBoxFor(m => m.ReceiptQuantity, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Quantity", required = "required" })
+                                </div>
+                                <div class="form-group has-success">
+
+                                    <label class="control-label" for="inputSuccess">Total Purchase Amount</label>
+                                    <br>
+                                    @Html.TextBoxFor(m => m.ReceiptPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Total Purchase Amount", required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="inputSuccess">Upload Any Document</label><br>
+                                    @Html.TextBoxFor(m => m.ReceiptDocument, new { @class = "form-control", type = "file" })
+                                    @*<input type="file" class="form-control" name="IssueDocument">*@
+                                </div>
+                                <div class="form-group has-success">
+
+                                    <label class="control-label" for="inputSuccess">Remarks</label>
+                                    <br>
+                                    @Html.TextAreaFor(m => m.ReceiptRemarks, new { @class = "form-control", id = "inputSuccess", placeholde = "Remarks", @row = "10" })
+                                </div>
+                            </div>
                             <br>
-                            @Html.DropDownListFor(m => m.ItemID, ViewBag.ItemsPurchase as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", required = "required" })
-                        </div>
-                        <div class="form-group has-success">
-
-                            <label class="control-label" for="inputSuccess">Select Suplier</label>
                             <br>
-                            @Html.DropDownListFor(m => m.SuplierID, ViewBag.Pursuplier as List<SelectListItem>, new { @class = "form-control", id = "inputSuccess", required = "required" })
-                            <a href="#" class="form-control" id="cat" data-target="#suplier" data-toggle="modal">+</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                            <div class="form-group has-success">
 
+                                <button type="submit" class="btn btn-primary" id="btnpurchaseitems">Save</button>
 
-                        <div class="form-group has-success">
+                            </div>
 
-                            <label class="control-label" for="inputSuccess">Quantity</label>
-                            <br>
-                            @Html.TextBoxFor(m => m.ReceiptQuantity, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Quantity", required = "required" })
-                        </div>
-                        <div class="form-group has-success">
-
-                            <label class="control-label" for="inputSuccess">Price</label>
-                            <br>
-                            @Html.TextBoxFor(m => m.ReceiptPrice, null, new { @class = "form-control", id = "inputSuccess", placeholder = "Price", required = "required" })
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-
-
-                        <div class="form-group has-success">
-                            <label class="control-label" for="inputSuccess">Upload Any Document</label><br>
-                            @Html.TextBoxFor(m => m.ReceiptDocument, new { @class = "form-control", type = "file" })
-                            @*<input type="file" class="form-control" name="IssueDocument">*@
-                        </div>
-                        <div class="form-group has-success">
-
-                            <label class="control-label" for="inputSuccess">Remarks</label>
-                            <br>
-                            @Html.TextAreaFor(m => m.ReceiptRemarks, new { @class = "form-control", id = "inputSuccess", placeholde = "Remarks", @row = "10" })
-                        </div>
-                    </div>
-
-
-
-                    <br>
-                    <br>
-                    <div class="form-group has-success">
-
-                        <button type="submit" class="btn btn-primary" id="btnpurchaseitems">Save</button>
-
-                    </div>
-
-</form>
+                        </form>
 
                     </div>
                 </div>
@@ -92,7 +91,7 @@
         </div>
     </div>
 </div>
-
+<!-- Modal for supliar -->
 <div class="modal fade" id="suplier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -144,6 +143,26 @@
     </div>
 
 </div>
+<!--End Modal for SublierAdd -->
+
+<div class="modal fade" id="ItemDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Item Detail</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="itemdetail2">
+                @Html.Action("ItemDetailForBranch", "InventoryDetails")
+            </div>
+                </div>
+
+        </div>
+    </div>
+
+</div>
 
 <script src="~/Content/assets/plugins/jquery-1.10.2.js"></script>
 <script>
@@ -160,7 +179,7 @@
                     if (response == "update") {
                         alert("Item quantity updated");
                     }
-                    else  {
+                    else {
                         alert("New item added");
                         location.href = "/Inventory/PurchaseItems"
                     }
@@ -169,7 +188,6 @@
             });
             return false;
         });
-
         $("#btnpr").click(function () {
 
             $.ajax({
@@ -185,5 +203,25 @@
             });
 
         });
+        $("#btnItemDetail").click(function () {
+            var itm = $("#OrderITem").val();
+            debugger
+
+            $.ajax({
+                type: 'post',
+                url: '/InventoryDetails/ItemDetailIDForBranch',
+                data: {
+                    ID: $("#OrderITem").val()
+                },
+
+                success: function (response) {
+                    $("itemdetail2").html(response);
+                    $("#ItemDetail").modal("show");
+                }
+
+            });
+
+            
+        });
     });
-        </script>
+</script>

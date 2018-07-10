@@ -565,7 +565,7 @@ namespace ServicePortal.Controllers
             
             return View(data);
         }
-    public ActionResult GroupByItemList(int id=0)
+        public ActionResult GroupByItemList(int id=0)
         {
             var data = db.inventryItems.Where(m => m.id == id).FirstOrDefault();
             var Items = db.inventryItems.Where(m => m.SubCategory.CatId == data.SubCategory.CatId & m.CatID == data.CatID & m.ModelID == data.ModelID).ToList();
@@ -722,16 +722,6 @@ namespace ServicePortal.Controllers
         }
         public ActionResult PurchaseItems()
         {
-            //List<SelectListItem> BranchID = new List<SelectListItem>();
-            //var vlu = db.Branches.ToList();
-            //BranchID.Add(new SelectListItem { Text = "Select Branch", Value = "" });
-            //foreach (var itm in vlu)
-            //{
-            //    BranchID.Add(new SelectListItem { Text = itm.BranchName , Value = itm.id.ToString() });
-
-            //}
-            //ViewBag.Pbranch = BranchID;
-
             List<SelectListItem> Pitems = new List<SelectListItem>();
             var itemsp = db.inventryItems.ToList();
             Pitems.Add(new SelectListItem { Text = "Select Item", Value = "" });
@@ -757,7 +747,28 @@ namespace ServicePortal.Controllers
         }
         public ActionResult PurchaseSave(Receipt rec)
         {
-            Session["check"] = 0;
+            //double AvgPurchasePrice;
+            var InventryItemDetail = db.inventryItems.Where(m => m.id == rec.ItemID).FirstOrDefault();
+            double AvgCurrentPrice = rec.ReceiptPrice / rec.ReceiptQuantity;
+            if(InventryItemDetail != null)
+            {
+                if (InventryItemDetail.AvgPurchasePrice > 0)
+                {
+                    InventryItemDetail.AvgPurchasePrice = (Convert.ToDouble(InventryItemDetail.AvgPurchasePrice) + AvgCurrentPrice) / 2;
+                    InventryItemDetail.LastPurchasePrice = AvgCurrentPrice;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    InventryItemDetail.AvgPurchasePrice = AvgCurrentPrice;
+                    InventryItemDetail.LastPurchasePrice = AvgCurrentPrice;
+                    db.SaveChanges();
+                }
+
+            }
+
+
+            Session["check"] = 0; 
             rec.BranchID = Convert.ToInt32(Session["Branchid"]);
             BranchStock bs = new BranchStock()
             {

@@ -477,6 +477,7 @@
     <Content Include="Views\InventoryDetails\_AccesoriesDetailList.cshtml" />
     <Content Include="Views\Inventory\GroupByItemList.cshtml" />
     <Content Include="Views\Inventory\_SubItemAttributeList.cshtml" />
+    <Content Include="Views\InventoryDetails\_ItemsDetailsForBranch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

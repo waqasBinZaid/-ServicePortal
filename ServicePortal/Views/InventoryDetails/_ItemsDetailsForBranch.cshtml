@@ -1,0 +1,159 @@
+﻿@model IEnumerable<ServicePortal.Models.inventryItem>
+@{
+    ViewBag.Title = "Accessories";
+    Layout = null;
+}
+<div class="row">
+    
+        @foreach (var itm in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><b>@itm.SubCategory.Category.Catgory | @itm.SubCategory.SubCat | @itm.Model.Models</b></h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row show-grid">
+                        <div class="col-md-5">
+                            <b>Sales Description</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.SalesDescription == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                    @itm.SalesDescription
+                                }
+                                
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Purchase Description</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.PurchaseDescription == null)
+                                {
+                                <p>Null</p>
+                                }
+                                else
+                                {
+                                     @itm.PurchaseDescription
+                                }
+                               
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Manufacturer</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.Manufactuere.Manufactuere1
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Models</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @itm.Model.Models
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b>Avg. Purchase Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.AvgPurchasePrice == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                    @itm.AvgPurchasePrice
+                                }
+                                
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b> Avg. Sale Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.AvgSalePrice == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                    @itm.AvgSalePrice
+                                }
+                                
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b>Bottom Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.BottemPrice == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                    @itm.BottemPrice
+                                }
+                                
+                            </center>
+                        </div>
+
+                        <div class="col-md-5">
+                            <b>Trader Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.TradesPrice == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                     @itm.TradesPrice
+                                }
+                               
+                            </center>
+                        </div>
+                        <div class="col-md-5">
+                            <b> Qouted Price</b>
+                        </div>
+                        <div class="col-md-7">
+                            <center>
+                                @if(itm.QoutedPrice == null)
+                                {
+                                    <p>Null</p>
+                                }
+                                else
+                                {
+                                    @itm.QoutedPrice
+                                }
+                                
+                            </center>
+                        </div>
+                      
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+   
+    
+</div>

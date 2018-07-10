@@ -23,9 +23,8 @@ namespace ServicePortal.Controllers
             Session["itmID"] = id;
             return RedirectToAction("DetailsInventory");
         }
-
         public ActionResult DetailsInventory()
-        {
+         {
             int id = Convert.ToInt32(Session["itmID"]);
             var qdata = db.BranchStocks.Where(m => m.ItemID == id).ToList();
             int qnty = 0;
@@ -52,8 +51,20 @@ namespace ServicePortal.Controllers
             ViewBag.pcQnty = pckqnty;
 
             return View(db.inventryItems.Where(m => m.id == id).ToList());
+        } 
+
+        public ActionResult ItemDetailIDForBranch(int ID = 0)
+       {
+          TempData["iteemID"] = ID;
+           return Content("ItemDetailForBranch");
+      }
+        public ActionResult ItemDetailForBranch()
+        {
+            int ID = Convert.ToInt32(TempData["iteemID"]);
+            var data = db.inventryItems.Where(m => m.id == ID).ToList();
+          
+            return PartialView("~/Views/InventoryDetails/_ItemsDetailsForBranch.cshtml",data);
         }
-     
         public ActionResult BranchItems()
         {
             int id = Convert.ToInt32(Session["itmID"]);
@@ -72,7 +83,9 @@ namespace ServicePortal.Controllers
         {
            int DetailItemID = Convert.ToInt32(Session["itmID"]);
             var data = db.inventryItems.Where(m => m.id == DetailItemID).FirstOrDefault();
-            var AccData = db.Accesories.Where(m => m.CatID == data.SubCategory.CatId & m.SubCatID == data.CatID & m.ModelID == data.ModelID).ToList();
+            int Categoryid = 0;
+               Categoryid= data.SubCategory.CatId;
+            var AccData = db.Accesories.Where(m => m.CatID == Categoryid & m.SubCatID == data.CatID & m.ModelID == data.ModelID).ToList();
 
             return PartialView("~/Views/InventoryDetails/_AccesoriesDetailList.cshtml",AccData);
         }

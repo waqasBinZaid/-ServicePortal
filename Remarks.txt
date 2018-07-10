@@ -1,1 +1,1 @@
-Attribute compare cannot add item with similiar Attributes, Delete by jquery
+no change in db view item detail in add in stock
